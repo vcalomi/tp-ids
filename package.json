@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/vcalomi/tp-ids/issues"
   },
-  "homepage": "https://github.com/vcalomi/tp-ids#readme"
+  "homepage": "https://github.com/vcalomi/tp-ids#readme",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
 }
