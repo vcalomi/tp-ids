@@ -10,7 +10,6 @@ app.get("/", (req, res) => {
 });
 
 app.post("/products/create", async (req, res) => {
-  console.log(req.body);
   const product = await prisma.product.create({
     data: {
       name: req.body.name,
