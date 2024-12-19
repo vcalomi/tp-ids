@@ -1,0 +1,53 @@
+@font-face {
+  font-family: "Master of Comics";
+  src: url(./fonts/Master_of_Comics.ttf);
+}
+
+@font-face {
+  font-family: "Cocogoose";
+  src: url(./fonts/Cocogoose.ttf);
+}
+
+html {
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: start;
+}
+
+#title {
+  margin: 0;
+  font-family: Master of Comics;
+  text-shadow: 0.06em 0.06em #8a2846, 0.1em 0.1em black;
+  font-size: 2.3em;
+}
+
+#title > a {
+  text-decoration: none;
+  color: #fb6f92;
+}
+
+.order-button > a {
+  text-decoration: none;
+  color: black;
+}
+
+.order-button {
+  align-self: center;
+  align-items: center;
+  font-family: Cocogoose;
+  border-radius: 15px;
+  border: none;
+  padding: 0.8em;
+  background-color: #fb6f92;
+  box-shadow: 0.15em 0.15em black;
+}
+
+.fa-bars {
+  align-self: center;
+  font-size: 1.5em;
+}
