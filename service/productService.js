@@ -1,17 +1,32 @@
-const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient();
+const ProductRepository = require("../repository/productRepository.js");
+
+function validateProductData(data) {
+  const { name, description, value, type, calories } = data;
+
+  if (!name || name.trim().length === 0) {
+    throw new Error("Product name is required and cannot be empty");
+  }
+
+  if (!description || description.trim().length === 0) {
+    throw new Error("Product description is required and cannot be empty");
+  }
+
+  if (value == null || value < 0) {
+    throw new Error("Product value must be a positive number");
+  }
+
+  if (!type || type.trim().length === 0) {
+    throw new Error("Product type is required and cannot be empty");
+  }
+
+  if (calories == null || calories < 0) {
+    throw new Error("Product calories must be a positive number");
+  }
+}
 
 async function createProduct(productData) {
-  const product = await prisma.product.create({
-    data: {
-      name: productData.name,
-      value: productData.value,
-      description: productData.description,
-      type: productData.type,
-      calories: productData.calories,
-    },
-  });
-  return product;
+  validateProductData(productData);
+  return ProductRepository.createProduct(productData);
 }
 
 module.exports = {
