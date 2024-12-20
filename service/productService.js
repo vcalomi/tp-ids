@@ -15,7 +15,7 @@ function validateProductData(data) {
     throw new Error("Product value must be a positive number");
   }
 
-  if (!type || type.trim().length === 0) {
+  if (!type || type.length === 0) {
     throw new Error("Product type is required and cannot be empty");
   }
 
