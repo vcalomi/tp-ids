@@ -1,13 +1,10 @@
-const productService = require("./service/productService.js");
 const express = require("express");
+const productRouter = require("./routes/productRouter.js");
 const app = express();
 const port = 3000;
 app.use(express.json());
 
-app.post("/products/create", async (req, res) => {
-  const product = await productService.createProduct(req.body);
-  res.send(product);
-});
+app.use("/products", productRouter);
 
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);
