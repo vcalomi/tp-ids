@@ -3,7 +3,7 @@ name: Tests for Sweet Tooth
 on:
   push:
     branches:
-      - dev
+      - "**"
   pull_request:
     branches:
       - dev
