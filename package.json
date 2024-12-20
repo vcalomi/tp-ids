@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/vcalomi/tp-ids#readme",
   "dependencies": {
-    "express": "^4.21.1"
+    "@prisma/client": "^6.1.0",
+    "express": "^4.21.1",
+    "prisma": "^6.1.0"
   }
 }
