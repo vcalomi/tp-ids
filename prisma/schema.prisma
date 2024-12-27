@@ -22,3 +22,12 @@ model Product {
   type String[]
   calories Int
 }
+
+model Address {
+  id Int @id @default(autoincrement())
+  number Int
+  street String
+  province String
+  city String
+  zipCode Int
+}
