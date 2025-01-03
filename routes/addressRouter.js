@@ -36,4 +36,13 @@ router.delete("/delete/:id", async (req, res) => {
   }
 })
 
+router.put("/update", async (req, res) => {
+  try {
+    const address = await addressService.updateAddress(req.body);
+    res.status(200).send(address);
+  } catch (error) {
+    res.status(400).send({ error: error.message });
+  }
+})
+
 module.exports = router;

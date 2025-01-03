@@ -23,12 +23,27 @@ const AddressRepository = {
     return address;
   },
   async deleteAddress(addressId) {
-    const deleteAddress = await prisma.address.delete({
+    const deletedAddress = await prisma.address.delete({
       where: {
         id: parseInt(addressId)
       },
     })
-    return deleteAddress
+    return deletedAddress
+  },
+  async updateAddress(addressData) {
+    const updatedAddress = await prisma.address.update({
+      where: {
+        id: parseInt(addressData.id)
+      },
+      data: {
+        number: addressData.number,
+        street: addressData.street,
+        city: addressData.city,
+        province: addressData.province,
+        zipCode: addressData.zipCode,
+      },
+    })
+    return updatedAddress
   }
 };
 

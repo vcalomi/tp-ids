@@ -41,8 +41,14 @@ async function deleteAddress(id) {
   }
 }
 
+async function updateAddress(addressData) {
+  validateAddressData(addressData);
+  return AddressRepository.updateAddress(addressData);
+}
+
 module.exports = {
   addAddress,
   getAddress,
   deleteAddress,
+  updateAddress,
 };
