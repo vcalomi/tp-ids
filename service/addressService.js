@@ -29,6 +29,11 @@ async function addAddress(addressData) {
   return AddressRepository.addAddress(addressData);
 }
 
+async function getAddress(id) {
+  return AddressRepository.getAddress(id);
+}
+
 module.exports = {
   addAddress,
+  getAddress,
 };

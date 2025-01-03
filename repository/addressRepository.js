@@ -14,6 +14,14 @@ const AddressRepository = {
     });
     return address;
   },
+  async getAddress(addressId) {
+    const address = await prisma.address.findUnique({
+      where: {
+        id: parseInt(addressId)
+      },
+    })
+    return address;
+  }
 };
 
 module.exports = AddressRepository;
