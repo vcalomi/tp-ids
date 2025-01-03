@@ -22,4 +22,18 @@ router.get("/get/:id", async (req, res) => {
   }
 })
 
+router.delete("/delete/:id", async (req, res) => {
+  try {
+    if (req.params.id) {
+      const id = req.params.id
+      const deletedAddress = await addressService.deleteAddress(id)
+      res.status(200).send({ message: `La direccion ${deletedAddress.street} ${deletedAddress.number} fue borrada correctamente.`})
+    } else {
+      res.status(400).send({ error: "Falta ID" })
+    }
+  } catch (error) {
+    res.status(404).send({ error: error.message })
+  }
+})
+
 module.exports = router;

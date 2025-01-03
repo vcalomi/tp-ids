@@ -21,6 +21,14 @@ const AddressRepository = {
       },
     })
     return address;
+  },
+  async deleteAddress(addressId) {
+    const deleteAddress = await prisma.address.delete({
+      where: {
+        id: parseInt(addressId)
+      },
+    })
+    return deleteAddress
   }
 };
 

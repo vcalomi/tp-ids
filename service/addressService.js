@@ -33,7 +33,16 @@ async function getAddress(id) {
   return AddressRepository.getAddress(id);
 }
 
+async function deleteAddress(id) {
+  try {
+    return AddressRepository.deleteAddress(id)
+  } catch (error) {
+    throw new Error("La direccion no existe.")
+  }
+}
+
 module.exports = {
   addAddress,
   getAddress,
+  deleteAddress,
 };
