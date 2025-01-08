@@ -14,20 +14,41 @@ datasource db {
 }
 
 model Product {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  name      String   @db.VarChar(255)
-  description   String?
-  value  Float
-  type String[]
-  calories Int
+  id           Int            @id @default(autoincrement())
+  createdAt    DateTime       @default(now())
+  name         String         @db.VarChar(255)
+  description  String?
+  value        Float
+  type         String[]
+  calories     Int
+  orderProduct OrderProduct[]
 }
 
 model Address {
-  id Int @id @default(autoincrement())
-  number Int
-  street String
+  id       Int     @id @default(autoincrement())
+  number   Int
+  street   String
   province String
-  city String
-  zipCode Int
+  city     String
+  zipCode  Int
+  Order    Order[]
+}
+
+model OrderProduct {
+  id        Int     @id @default(autoincrement())
+  order     Order   @relation(fields: [orderId], references: [id])
+  orderId   Int
+  product   Product @relation(fields: [productId], references: [id])
+  productId Int
+  quantity  Int
+}
+
+model Order {
+  id          Int            @id @default(autoincrement())
+  totalPrice  Float
+  address     Address        @relation(fields: [addressId], references: [id])
+  addressId   Int
+  products    OrderProduct[]
+  ownerName   String
+  orderStatus String
 }

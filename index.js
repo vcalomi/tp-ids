@@ -9,6 +9,8 @@ app.use("/products", productRouter);
 
 app.use("/address", addressRouter);
 
+app.use("/orders", orderRouter);
+
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);
 });
