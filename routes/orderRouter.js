@@ -4,7 +4,7 @@ const orderService = require("../service/orderService.js");
 
 router.post("/create", async (req, res) => {
   try {
-    const order = await orderService.createorder(req.body);
+    const order = await orderService.createOrder(req.body);
     const location = `/orders/${order.id}`;
     res.location(location).status(201).send(order);
   } catch (error) {
