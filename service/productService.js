@@ -29,6 +29,11 @@ async function createProduct(productData) {
   return ProductRepository.createProduct(productData);
 }
 
+async function getProduct(id) {
+  return ProductRepository.getProduct(id);
+}
+
 module.exports = {
   createProduct,
+  getProduct,
 };
