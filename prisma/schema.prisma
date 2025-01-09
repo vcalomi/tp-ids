@@ -16,7 +16,7 @@ datasource db {
 model Product {
   id           Int            @id @default(autoincrement())
   createdAt    DateTime       @default(now())
-  name         String         @db.VarChar(255)
+  name         String         
   description  String?
   value        Float
   type         String[]
@@ -45,7 +45,7 @@ model OrderProduct {
 
 model Order {
   id          Int            @id @default(autoincrement())
-  totalPrice  Float
+  totalPrice  Decimal
   address     Address        @relation(fields: [addressId], references: [id])
   addressId   Int
   products    OrderProduct[]
