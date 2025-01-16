@@ -8,6 +8,11 @@
   src: url(./fonts/Cocogoose.ttf);
 }
 
+@font-face {
+  font-family: "Mermaid";
+  src: url(./fonts/Mermaid.ttf);
+}
+
 body {
   margin: 0;
   background-color: #f8f8ec;
@@ -35,6 +40,7 @@ nav {
   font-family: Master of Comics;
   text-shadow: 0.06em 0.06em #45151b, 0.1em 0.1em black;
   font-size: 2.3em;
+  margin-left: 60px;
 }
 
 #title > a {
@@ -115,6 +121,7 @@ nav {
   font-weight: 500;
   cursor: pointer;
   transition: 0.2s ease;
+  text-decoration: none;
 }
 
 .card-list .card-item .category-button:hover {
@@ -191,4 +198,32 @@ nav {
   margin-top: 15px;
   margin-bottom: 10px;
   font-size: 15px;
+}
+
+.title {
+  font-family: Mermaid;
+  font-size: 50px;
+  justify-self: center;
+}
+
+.menu-dulces {
+  display: flex;
+  justify-content: center;
+}
+
+.dulce {
+  background-color: #ea9dae;
+  width: 60%;
+  height: 300px;
+  margin: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  border-radius: 50px;
+}
+
+.sweet-image {
+  padding: 20px;
+
 }
