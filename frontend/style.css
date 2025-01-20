@@ -41,12 +41,17 @@ nav {
   text-shadow: 0.06em 0.06em #45151b, 0.1em 0.1em black;
   font-size: 2.3em;
   margin-left: 60px;
+  transition: 0.5s;
 }
 
 #title > a {
   text-decoration: none;
   color: #ea9dae;
   margin-top: 0;
+}
+
+#title:hover {
+  transform: scale(1.1);
 }
 
 .order-button > a {
@@ -94,7 +99,7 @@ nav {
   margin: 20px;
 }
 
-.card-list .card-item .food-image {
+.card-list .card-item .menu-image {
   width: 150px;
   height: 180px;
 }
@@ -126,7 +131,7 @@ nav {
 
 .card-list .card-item .category-button:hover {
   color: #ea9dae;
-  font-size: 2rem;
+  transform: translateY(-5px)
 }
 
 .footer {
@@ -212,7 +217,7 @@ nav {
   justify-self: center;
   justify-content: center;
   margin: 5% 0 10% 0;
-  width: 70%;
+  width: 70em;
   height: 20em;
   border-radius: 50px;
   transition: 0.3s;
@@ -224,10 +229,14 @@ nav {
   text-shadow: 1px 1px black;
 }
 
-.sweet-image {
+.food-image {
   height: 120%;
   align-self: center;
   margin: 3%;
+}
+
+#brownie-menu {
+  width: 70%;
 }
 
 .producto {
@@ -239,13 +248,14 @@ nav {
 
 .nombre {
   font-family: Cocogoose;
-  font-size: 70px;
+  font-size: 4em;
   margin: 0;
   padding: 5% 0 5% 0;
+  text-align: center;
 }
 
 .precio {
-  font-size: 30px;
+  font-size: 2em;
   margin: 0;
   padding: 5% 0 5% 0;
 }
@@ -288,5 +298,31 @@ nav {
 }
 
 #yogurt {
+  height: 26em;
+}
+
+#avocado-toast {
+  width: 28em;
+  height: 25em;
+}
+
+#salmon-bagel {
+  height: 26em;
+  width: 25em;
+  padding-left: 25px;
+}
+
+#american-bf {
+  width: 20em;
+  padding-left: 25px;
+}
+
+#sandwich {
+  width: 23em;
+  height: 27em;
+}
+
+#croissant {
+  width: 26em;
   height: 26em;
 }
