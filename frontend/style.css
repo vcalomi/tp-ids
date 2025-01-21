@@ -9,8 +9,8 @@
 }
 
 @font-face {
-  font-family: "Mermaid";
-  src: url(./fonts/Mermaid.ttf);
+  font-family: "Adelia";
+  src: url(./fonts/Adelia.otf);
 }
 
 body {
@@ -206,7 +206,7 @@ nav {
 }
 
 .title {
-  font-family: Mermaid;
+  font-family: Adelia;
   font-size: 50px;
   justify-self: flex-start;
   margin: 3% 0 5% 13%;
@@ -325,4 +325,17 @@ nav {
 #croissant {
   width: 26em;
   height: 26em;
+}
+
+#iced-coffee {
+  height: 24.5em;
+}
+
+#iced-tea {
+  height: 25em;
+}
+
+#milkshake {
+  height: 27em;
+  width: 18em;
 }
