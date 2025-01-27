@@ -25,8 +25,16 @@ function validateAddressData(data) {
 }
 
 async function addAddress(addressData) {
-  validateAddressData(addressData);
-  return AddressRepository.addAddress(addressData);
+  console.log(addressData);
+  const parsedData = {
+    street: addressData.street,
+    number: parseInt(addressData.number),
+    zipCode: parseInt(addressData.zipCode),
+    province: addressData.province,
+    city: addressData.city,
+  };
+  validateAddressData(parsedData);
+  return AddressRepository.addAddress(parsedData);
 }
 
 async function getAddress(id) {
@@ -35,9 +43,9 @@ async function getAddress(id) {
 
 async function deleteAddress(id) {
   try {
-    return AddressRepository.deleteAddress(id)
+    return AddressRepository.deleteAddress(id);
   } catch (error) {
-    throw new Error("La direccion no existe.")
+    throw new Error("La direccion no existe.");
   }
 }
 
