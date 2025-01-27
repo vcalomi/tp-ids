@@ -14,6 +14,14 @@ const ProductRepository = {
     });
     return product;
   },
-};
+  async getProduct(productId) {
+    const product = await prisma.product.findUnique({
+      where: {
+        id: parseInt(productId)
+      },
+    })
+    return product;
+  }
+}
 
 module.exports = ProductRepository;
