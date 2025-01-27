@@ -131,7 +131,7 @@ nav {
 
 .card-list .card-item .category-button:hover {
   color: #ea9dae;
-  transform: translateY(-5px)
+  transform: translateY(-5px);
 }
 
 .footer {
@@ -197,7 +197,7 @@ nav {
   color: #f8de9c;
 }
 
-.text{
+.text {
   color: white;
   text-align: center;
   margin-top: 15px;
@@ -338,4 +338,40 @@ nav {
 #milkshake {
   height: 27em;
   width: 18em;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 200px;
+}
+
+.dropdown-menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-menu ul li {
+  padding: 10px 20px;
+}
+
+.dropdown-menu ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+}
+
+.dropdown-menu ul li a:hover {
+  color: #007bff;
+}
+
+.dropdown-menu.active {
+  display: block;
 }
