@@ -1,6 +1,7 @@
 function loadSalty() {
   const products = JSON.parse(localStorage.getItem("products"));
   const title = document.getElementById("TITLE");
+  console.log(products);
 
   const saltyProducts = products.filter((product) =>
     product.type.includes("SALADO")
@@ -27,6 +28,31 @@ function loadSalty() {
     productDiv.appendChild(productName);
     productDiv.appendChild(productDescription);
     productDiv.appendChild(productPrice);
+    const addToCartButton = document.createElement("button");
+    addToCartButton.innerText = "Agregar al carrito";
+    addToCartButton.addEventListener("click", () => {
+      if (localStorage.getItem("carrito").length === 0) {
+        const cart = [];
+        cart.push({
+          id: 1,
+          name: saltyProducts[i].name,
+          value: saltyProducts[i].value,
+          quantity: 1,
+        });
+        localStorage.setItem("carrito", JSON.stringify(cart));
+      } else {
+        console.log(localStorage.getItem("carrito"));
+
+        const cart = JSON.parse(localStorage.getItem("carrito"));
+        cart.push({
+          id: 1,
+          name: saltyProducts[i].name,
+          value: saltyProducts[i].value,
+          quantity: 1,
+        });
+      }
+    });
+    productDiv.appendChild(addToCartButton);
     title.append(saltyDiv);
     saltyDiv.appendChild(productImg);
     saltyDiv.appendChild(productDiv);

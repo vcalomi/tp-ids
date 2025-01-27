@@ -375,3 +375,57 @@ nav {
 .dropdown-menu.active {
   display: block;
 }
+
+.cart-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f8f8ec;
+}
+
+.cart-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cart-summary {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.customer-form,
+.address-form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.customer-form input,
+.address-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+#place-order {
+  margin-top: 20px;
+  width: 100%;
+}
