@@ -8,6 +8,11 @@
   src: url(./fonts/Cocogoose.ttf);
 }
 
+@font-face {
+  font-family: "Adelia";
+  src: url(./fonts/Adelia.otf);
+}
+
 body {
   margin: 0;
   background-color: #f8f8ec;
@@ -35,12 +40,18 @@ nav {
   font-family: Master of Comics;
   text-shadow: 0.06em 0.06em #45151b, 0.1em 0.1em black;
   font-size: 2.3em;
+  margin-left: 60px;
+  transition: 0.5s;
 }
 
 #title > a {
   text-decoration: none;
   color: #ea9dae;
   margin-top: 0;
+}
+
+#title:hover {
+  transform: scale(1.1);
 }
 
 .order-button > a {
@@ -88,7 +99,7 @@ nav {
   margin: 20px;
 }
 
-.card-list .card-item .food-image {
+.card-list .card-item .menu-image {
   width: 150px;
   height: 180px;
 }
@@ -115,11 +126,12 @@ nav {
   font-weight: 500;
   cursor: pointer;
   transition: 0.2s ease;
+  text-decoration: none;
 }
 
 .card-list .card-item .category-button:hover {
   color: #ea9dae;
-  font-size: 2rem;
+  transform: translateY(-5px)
 }
 
 .footer {
@@ -191,4 +203,139 @@ nav {
   margin-top: 15px;
   margin-bottom: 10px;
   font-size: 15px;
+}
+
+.title {
+  font-family: Adelia;
+  font-size: 50px;
+  justify-self: flex-start;
+  margin: 3% 0 5% 13%;
+}
+
+.menu-dulces {
+  display: flex;
+  justify-self: center;
+  justify-content: center;
+  margin: 5% 0 10% 0;
+  width: 70em;
+  height: 20em;
+  border-radius: 50px;
+  transition: 0.3s;
+}
+
+.menu-dulces:hover {
+  background-color: #ea9dae;
+  color: #f8de9c;
+  text-shadow: 1px 1px black;
+}
+
+.food-image {
+  height: 120%;
+  align-self: center;
+  margin: 3%;
+}
+
+#brownie-menu {
+  width: 70%;
+}
+
+.producto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.nombre {
+  font-family: Cocogoose;
+  font-size: 4em;
+  margin: 0;
+  padding: 5% 0 5% 0;
+  text-align: center;
+}
+
+.precio {
+  font-size: 2em;
+  margin: 0;
+  padding: 5% 0 5% 0;
+}
+
+.descripcion {
+  font-size: 1.2em;
+  padding: 0 5% 0 5%;
+  margin: 0;
+  text-align: center;
+}
+
+#brownies {
+  height: 26em;
+}
+
+#pancakes {
+  width: 22em;
+  height: 25em;
+}
+
+#cookie {
+  height: 30em;
+  width: 28em;
+  margin-left: 0;
+}
+
+#cheesecake {
+  width: 23em;
+  height: 35em;
+}
+
+#cinnamon-roll {
+  width: 19em;
+  height: 22em;
+}
+
+#french-toast {
+  width: 19em;
+  height: 23em;
+}
+
+#yogurt {
+  height: 26em;
+}
+
+#avocado-toast {
+  width: 28em;
+  height: 25em;
+}
+
+#salmon-bagel {
+  height: 26em;
+  width: 25em;
+  padding-left: 25px;
+}
+
+#american-bf {
+  width: 20em;
+  padding-left: 25px;
+}
+
+#sandwich {
+  width: 23em;
+  height: 27em;
+}
+
+#croissant {
+  width: 26em;
+  height: 26em;
+}
+
+#iced-coffee {
+  height: 24.5em;
+}
+
+#iced-tea {
+  height: 25em;
+}
+
+#milkshake {
+  height: 27em;
+  width: 18em;
 }
