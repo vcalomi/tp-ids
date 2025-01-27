@@ -12,4 +12,9 @@ router.post("/create", async (req, res) => {
   }
 });
 
+router.get("/", async (req, res) => {
+  const products = await productService.getProducts();
+  res.status(200).send(products);
+});
+
 module.exports = router;
