@@ -33,7 +33,12 @@ async function getProduct(id) {
   return ProductRepository.getProduct(id);
 }
 
+async function getProducts() {
+  return await ProductRepository.getProducts();
+}
+
 module.exports = {
   createProduct,
   getProduct,
+  getProducts,
 };

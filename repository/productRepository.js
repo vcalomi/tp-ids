@@ -17,11 +17,15 @@ const ProductRepository = {
   async getProduct(productId) {
     const product = await prisma.product.findUnique({
       where: {
-        id: parseInt(productId)
+        id: parseInt(productId),
       },
-    })
+    });
     return product;
-  }
-}
+  },
+  async getProducts() {
+    const products = await prisma.product.findMany();
+    return products;
+  },
+};
 
 module.exports = ProductRepository;
