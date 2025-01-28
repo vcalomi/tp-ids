@@ -27,6 +27,29 @@ function loadSalty() {
     productDiv.appendChild(productName);
     productDiv.appendChild(productDescription);
     productDiv.appendChild(productPrice);
+    const addToCartButton = document.createElement("button");
+    addToCartButton.innerText = "Agregar al carrito";
+    addToCartButton.addEventListener("click", () => {
+      if (localStorage.getItem("carrito").length === 0) {
+        const cart = [];
+        cart.push({
+          id: 1,
+          name: saltyProducts[i].name,
+          value: saltyProducts[i].value,
+          quantity: 1,
+        });
+        localStorage.setItem("carrito", JSON.stringify(cart));
+      } else {
+        const cart = JSON.parse(localStorage.getItem("carrito"));
+        cart.push({
+          id: 1,
+          name: saltyProducts[i].name,
+          value: saltyProducts[i].value,
+          quantity: 1,
+        });
+      }
+    });
+    productDiv.appendChild(addToCartButton);
     title.append(saltyDiv);
     saltyDiv.appendChild(productImg);
     saltyDiv.appendChild(productDiv);
