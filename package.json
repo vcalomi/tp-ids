@@ -20,6 +20,7 @@
   "homepage": "https://github.com/vcalomi/tp-ids#readme",
   "dependencies": {
     "@prisma/client": "^6.1.0",
+    "cors": "^2.8.5",
     "express": "^4.21.1"
   },
   "devDependencies": {
