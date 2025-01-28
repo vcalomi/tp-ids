@@ -11,7 +11,7 @@ function validateAddressData(data) {
     throw new Error("Address street is required and cannot be empty");
   }
 
-  if (number == null || number < 0) {
+  if (number == null || isNaN(number) || number < 0) {
     throw new Error("Address number must be a positive number");
   }
 
@@ -19,7 +19,7 @@ function validateAddressData(data) {
     throw new Error("Address province is required and cannot be empty");
   }
 
-  if (zipCode == null || zipCode < 0) {
+  if (zipCode == null || isNaN(zipCode) || zipCode < 0) {
     throw new Error("Address zipCode must be a positive number");
   }
 }
@@ -32,7 +32,7 @@ async function addAddress(addressData) {
     province: addressData.province,
     city: addressData.city,
   };
-  validateAddressData(parsedData);
+  validateAddressData(addressData);
   return AddressRepository.addAddress(parsedData);
 }
 

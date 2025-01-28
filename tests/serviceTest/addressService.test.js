@@ -166,7 +166,7 @@ describe("Address Service", () => {
       street: "Bahia Blanca",
       city: "Llavallol",
       province: "Buenos Aires",
-      zipCode: null,
+      zipCode: -2,
     };
 
     await expect(addressService.addAddress(addressData)).rejects.toThrow();
