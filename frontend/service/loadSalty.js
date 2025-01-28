@@ -1,7 +1,6 @@
 function loadSalty() {
   const products = JSON.parse(localStorage.getItem("products"));
   const title = document.getElementById("TITLE");
-  console.log(products);
 
   const saltyProducts = products.filter((product) =>
     product.type.includes("SALADO")
@@ -41,8 +40,6 @@ function loadSalty() {
         });
         localStorage.setItem("carrito", JSON.stringify(cart));
       } else {
-        console.log(localStorage.getItem("carrito"));
-
         const cart = JSON.parse(localStorage.getItem("carrito"));
         cart.push({
           id: 1,

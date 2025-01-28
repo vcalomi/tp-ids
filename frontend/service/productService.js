@@ -14,4 +14,3 @@ async function fetchProducts() {
 fetchProducts().then((data) =>
   localStorage.setItem("products", JSON.stringify(data))
 );
-//console.log(JSON.parse(localStorage.getItem("products")));

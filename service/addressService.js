@@ -25,7 +25,6 @@ function validateAddressData(data) {
 }
 
 async function addAddress(addressData) {
-  console.log(addressData);
   const parsedData = {
     street: addressData.street,
     number: parseInt(addressData.number),

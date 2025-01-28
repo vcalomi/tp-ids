@@ -52,7 +52,6 @@ document.addEventListener("DOMContentLoaded", function () {
         body: JSON.stringify(addressData),
       });
       const data = await response.json();
-      console.log(data);
 
       addressId = data.id;
       alert("Dirección guardada correctamente.");
@@ -63,8 +62,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   placeOrderButton.addEventListener("click", async function () {
-    console.log(addressId, ownerName);
-
     if (!ownerName || !addressId) {
       alert(
         "Completa los datos del cliente y la dirección antes de realizar el pedido."
