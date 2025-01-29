@@ -1,3 +1,5 @@
+import { addToCart } from "./productService.js";
+
 function loadSalty() {
   const products = JSON.parse(localStorage.getItem("products"));
   const title = document.getElementById("TITLE");
@@ -29,26 +31,7 @@ function loadSalty() {
     productDiv.appendChild(productPrice);
     const addToCartButton = document.createElement("button");
     addToCartButton.innerText = "Agregar al carrito";
-    addToCartButton.addEventListener("click", () => {
-      if (localStorage.getItem("carrito").length === 0) {
-        const cart = [];
-        cart.push({
-          id: 1,
-          name: saltyProducts[i].name,
-          value: saltyProducts[i].value,
-          quantity: 1,
-        });
-        localStorage.setItem("carrito", JSON.stringify(cart));
-      } else {
-        const cart = JSON.parse(localStorage.getItem("carrito"));
-        cart.push({
-          id: 1,
-          name: saltyProducts[i].name,
-          value: saltyProducts[i].value,
-          quantity: 1,
-        });
-      }
-    });
+    addToCartButton.addEventListener("click", addToCart(saltyProducts, i));
     productDiv.appendChild(addToCartButton);
     title.append(saltyDiv);
     saltyDiv.appendChild(productImg);
