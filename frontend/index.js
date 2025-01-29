@@ -1,3 +1,4 @@
+//hamburger button menu
 document.addEventListener("DOMContentLoaded", function () {
   const hamburgerButton = document.getElementById("hamburger-button");
   const dropdownMenu = document.getElementById("dropdown-menu");
@@ -14,4 +15,14 @@ document.addEventListener("DOMContentLoaded", function () {
       dropdownMenu.classList.remove("active");
     }
   });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const possibleCart = localStorage.getItem("carrito");
+  let cart = [];
+  if (possibleCart) {
+    return;
+  } else {
+    localStorage.setItem("carrito", JSON.parse(cart));
+  }
 });

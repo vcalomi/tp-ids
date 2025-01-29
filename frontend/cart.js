@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
       const data = await response.json();
       alert("Pedido realizado con éxito.");
-      localStorage.removeItem("cart");
+      localStorage.setItem("carrito", []);
       window.location.href = "/";
     } catch (error) {
       console.error("Error al realizar el pedido:", error);

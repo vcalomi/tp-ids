@@ -14,3 +14,25 @@ async function fetchProducts() {
 fetchProducts().then((data) =>
   localStorage.setItem("products", JSON.stringify(data))
 );
+
+export function addToCart(products, index) {
+  if (JSON.parse(localStorage.getItem("carrito")).length === 0) {
+    const cart = [];
+    cart.push({
+      id: 1,
+      name: products[index].name,
+      value: products[index].value,
+      quantity: 1,
+    });
+    localStorage.setItem("carrito", JSON.stringify(cart));
+  } else {
+    const cart = JSON.parse(localStorage.getItem("carrito"));
+    cart.push({
+      id: 1,
+      name: products[index].name,
+      value: products[index].value,
+      quantity: 1,
+    });
+    localStorage.setItem("carrito", JSON.stringify(cart));
+  }
+}
