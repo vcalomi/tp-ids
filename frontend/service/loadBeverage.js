@@ -1,3 +1,5 @@
+import { addToCart } from "./productService.js";
+
 function loadBeverage() {
   const products = JSON.parse(localStorage.getItem("products"));
   const title = document.getElementById("TITLE");
@@ -27,6 +29,10 @@ function loadBeverage() {
     productDiv.appendChild(productName);
     productDiv.appendChild(productDescription);
     productDiv.appendChild(productPrice);
+    const addToCartButton = document.createElement("button");
+    addToCartButton.innerText = "Agregar al carrito";
+    addToCartButton.addEventListener("click", addToCart(beverageProducts, i));
+    productDiv.appendChild(addToCartButton);
     title.append(beverageDiv);
     beverageDiv.appendChild(productImg);
     beverageDiv.appendChild(productDiv);

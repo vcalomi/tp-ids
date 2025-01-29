@@ -1,3 +1,5 @@
+import { addToCart } from "./productService.js";
+
 function loadSweet() {
   const products = JSON.parse(localStorage.getItem("products"));
   const title = document.getElementById("TITLE");
@@ -27,6 +29,10 @@ function loadSweet() {
     productDiv.appendChild(productName);
     productDiv.appendChild(productDescription);
     productDiv.appendChild(productPrice);
+    const addToCartButton = document.createElement("button");
+    addToCartButton.innerText = "Agregar al carrito";
+    addToCartButton.addEventListener("click", addToCart(sweetProducts, i));
+    productDiv.appendChild(addToCartButton);
     title.append(sweetDiv);
     sweetDiv.appendChild(productImg);
     sweetDiv.appendChild(productDiv);
