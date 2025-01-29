@@ -16,7 +16,7 @@ fetchProducts().then((data) =>
 );
 
 export function addToCart(products, index) {
-  if (localStorage.getItem("carrito").length === 0) {
+  if (JSON.parse(localStorage.getItem("carrito")).length === 0) {
     const cart = [];
     cart.push({
       id: 1,
@@ -33,5 +33,6 @@ export function addToCart(products, index) {
       value: products[index].value,
       quantity: 1,
     });
+    localStorage.setItem("carrito", JSON.stringify(cart));
   }
 }

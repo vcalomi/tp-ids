@@ -31,7 +31,9 @@ function loadSweet() {
     productDiv.appendChild(productPrice);
     const addToCartButton = document.createElement("button");
     addToCartButton.innerText = "Agregar al carrito";
-    addToCartButton.addEventListener("click", addToCart(sweetProducts, i));
+    addToCartButton.addEventListener("click", () =>
+      addToCart(sweetProducts, i)
+    );
     productDiv.appendChild(addToCartButton);
     title.append(sweetDiv);
     sweetDiv.appendChild(productImg);
