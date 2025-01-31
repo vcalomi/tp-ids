@@ -26,6 +26,13 @@ const ProductRepository = {
     const products = await prisma.product.findMany();
     return products;
   },
+  async deleteProduct(productId) {
+    await prisma.product.delete({
+      where: {
+        id: parseInt(productId),
+      },
+    });
+  },
 };
 
 module.exports = ProductRepository;
