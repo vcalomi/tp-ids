@@ -430,6 +430,56 @@ nav {
   width: 100%;
 }
 
+.product-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.product-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f8f8ec;
+}
+
+.product-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+.product-details {
+  flex: 1;
+}
+
+.product-details h3 {
+  margin: 0;
+  font-size: 1.5em;
+  color: #45151b;
+}
+
+.product-details p {
+  margin: 5px 0;
+}
+
+.delete-button {
+  padding: 10px 20px;
+  background-color: #ea9dae;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.delete-button:hover {
+  background-color: #d87a8e;
+
 .form-container {
   max-width: 600px;
   margin: 20px auto;

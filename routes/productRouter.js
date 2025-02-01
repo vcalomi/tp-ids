@@ -17,4 +17,13 @@ router.get("/", async (req, res) => {
   res.status(200).send(products);
 });
 
+router.delete("/delete/:productId", async (req, res) => {
+  try {
+    await productService.deleteProduct(req.params.productId);
+    res.status(204).end();
+  } catch (error) {
+    res.status(400).send({ message: error.message }).end();
+  }
+});
+
 module.exports = router;

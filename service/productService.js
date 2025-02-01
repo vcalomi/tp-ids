@@ -37,8 +37,13 @@ async function getProducts() {
   return await ProductRepository.getProducts();
 }
 
+async function deleteProduct(productId) {
+  await ProductRepository.deleteProduct(productId);
+}
+
 module.exports = {
   createProduct,
   getProduct,
   getProducts,
+  deleteProduct,
 };
