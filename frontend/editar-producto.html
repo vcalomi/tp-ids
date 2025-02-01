@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Editar Producto - Sweet Tooth</title>
+  </head>
+  <body>
+    <nav>
+      <i class="fa-solid fa-bars" id="hamburger-button"></i>
+      <h1 id="title"><a href="index.html">Sweet Tooth</a></h1>
+      <button class="order-button"><a href="/">ORDENAR</a></button>
+    </nav>
+
+    <div class="form-container">
+      <h1 class="title">Editar Producto</h1>
+      <form id="edit-product-form">
+        <input
+          type="text"
+          id="edit-product-name"
+          placeholder="Nombre del Producto"
+          required
+        />
+        <input
+          type="number"
+          id="edit-product-price"
+          placeholder="Precio"
+          required
+        />
+        <input
+          type="text"
+          id="edit-product-image"
+          placeholder="URL de la Imagen"
+          required
+        />
+        <textarea
+          id="edit-product-description"
+          placeholder="Descripción del Producto"
+          required
+        ></textarea>
+        <input
+          type="text"
+          id="edit-product-type"
+          placeholder="Tipo (separado por comas, ej: dulce, vegano)"
+          required
+        />
+        <input
+          type="number"
+          id="edit-product-calories"
+          placeholder="Calorías"
+          required
+        />
+        <button type="submit" class="order-button">Guardar Cambios</button>
+      </form>
+    </div>
+
+    <footer class="footer">
+      <ul class="social-icon">
+        <li class="icon-elem">
+          <a href="" class="icon">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+        </li>
+        <li class="icon-elem">
+          <a href="" class="icon">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+        </li>
+        <li class="icon-elem">
+          <a href="" class="icon">
+            <i class="fa-regular fa-envelope"></i>
+          </a>
+        </li>
+      </ul>
+      <ul class="menu">
+        <li class="menu-elem">
+          <a href="index.html" class="menu-icon"> Inicio </a>
+          <a href="" class="menu-icon"> Contacto </a>
+          <a href="" class="menu-icon"> Sobre Nosotros </a>
+        </li>
+      </ul>
+      <p class="text">Copyright © Sweet Tooth</p>
+    </footer>
+
+    <script
+      src="https://kit.fontawesome.com/3f6a94cf86.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

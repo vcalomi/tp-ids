@@ -479,6 +479,7 @@ nav {
 
 .delete-button:hover {
   background-color: #d87a8e;
+}
 
 .form-container {
   max-width: 600px;
@@ -500,4 +501,36 @@ nav {
 
 .form-container button {
   width: 100%;
+}
+
+.product-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-button,
+.delete-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.edit-button {
+  background-color: #4caf50;
+  color: white;
+}
+
+.edit-button:hover {
+  background-color: #45a049;
+}
+
+.delete-button {
+  background-color: #ea9dae;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #d87a8e;
 }
