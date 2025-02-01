@@ -33,6 +33,20 @@ const ProductRepository = {
       },
     });
   },
+  async editProduct(productId, productData) {
+    await prisma.product.update({
+      where: {
+        id: parseInt(productId),
+      },
+      data: {
+        name: productData.name,
+        value: productData.value,
+        description: productData.description,
+        type: productData.type,
+        calories: productData.calories,
+      },
+    });
+  },
 };
 
 module.exports = ProductRepository;

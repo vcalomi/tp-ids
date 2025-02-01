@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
   const productList = document.getElementById("product-list");
-
-  // Función para obtener los productos del backend
   async function fetchProducts() {
     try {
       const response = await fetch("http://localhost:3000/products");
@@ -12,9 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Función para mostrar los productos en la página
   function displayProducts(products) {
-    productList.innerHTML = ""; // Limpiar la lista antes de agregar productos
+    productList.innerHTML = "";
 
     products.forEach((product) => {
       const productItem = document.createElement("div");
@@ -30,18 +27,20 @@ document.addEventListener("DOMContentLoaded", function () {
           <p>Tipo: ${product.type.join(", ")}</p>
           <p>Calorías: ${product.calories}</p>
         </div>
-        <button class="delete-button" data-id="${product.id}">Eliminar</button>
+        <div class="product-actions">
+          <button class="edit-button" data-id="${product.id}">Editar</button>
+          <button class="delete-button" data-id="${
+            product.id
+          }">Eliminar</button>
+        </div>
       `;
       productList.appendChild(productItem);
     });
 
-    // Agregar evento a los botones de eliminar
     const deleteButtons = document.querySelectorAll(".delete-button");
     deleteButtons.forEach((button) => {
       button.addEventListener("click", async function () {
         const productId = button.getAttribute("data-id");
-        console.log(productId);
-
         try {
           const response = await fetch(
             `http://localhost:3000/products/delete/${productId}`,
@@ -54,6 +53,14 @@ document.addEventListener("DOMContentLoaded", function () {
         } catch (error) {
           console.error("Error al eliminar el producto:", error);
         }
+      });
+    });
+
+    const editButtons = document.querySelectorAll(".edit-button");
+    editButtons.forEach((button) => {
+      button.addEventListener("click", function () {
+        const productId = button.getAttribute("data-id");
+        window.location.href = `edit-product.html?id=${productId}`;
       });
     });
   }
