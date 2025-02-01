@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <title>Editar Producto - Sweet Tooth</title>
+    <title>Eliminar Producto - Sweet Tooth</title>
   </head>
   <body>
     <nav>
@@ -14,45 +14,8 @@
     </nav>
 
     <div class="form-container">
-      <h1 class="title">Editar Producto</h1>
-      <form id="edit-product-form">
-        <input
-          type="text"
-          id="edit-product-name"
-          placeholder="Nombre del Producto"
-          required
-        />
-        <input
-          type="number"
-          id="edit-product-price"
-          placeholder="Precio"
-          required
-        />
-        <input
-          type="text"
-          id="edit-product-image"
-          placeholder="URL de la Imagen"
-          required
-        />
-        <textarea
-          id="edit-product-description"
-          placeholder="Descripción del Producto"
-          required
-        ></textarea>
-        <input
-          type="text"
-          id="edit-product-type"
-          placeholder="Tipo (separado por comas, ej: dulce, vegano)"
-          required
-        />
-        <input
-          type="number"
-          id="edit-product-calories"
-          placeholder="Calorías"
-          required
-        />
-        <button type="submit" class="order-button">Guardar Cambios</button>
-      </form>
+      <h1 class="title">Eliminar Producto</h1>
+      <div id="product-list" class="product-list"></div>
     </div>
 
     <footer class="footer">
@@ -87,6 +50,6 @@
       src="https://kit.fontawesome.com/3f6a94cf86.js"
       crossorigin="anonymous"
     ></script>
-    <script src="editar-producto.js" type="module"></script>
+    <script src="manage-products.js" type="module"></script>
   </body>
 </html>

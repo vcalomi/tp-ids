@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       );
       alert("Producto actualizado con éxito.");
-      window.location.href = "./delete-product.html";
+      window.location.href = "./manage-products.html";
     } catch (error) {
       console.error("Error al actualizar el producto:", error);
     }

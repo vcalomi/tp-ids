@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
     editButtons.forEach((button) => {
       button.addEventListener("click", function () {
         const productId = button.getAttribute("data-id");
-        window.location.href = `editar-producto.html?id=${productId}`;
+        window.location.href = `edit-product.html?id=${productId}`;
       });
     });
   }
