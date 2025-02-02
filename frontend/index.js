@@ -23,6 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (possibleCart) {
     return;
   } else {
-    localStorage.setItem("carrito", JSON.parse(cart));
+    localStorage.setItem("carrito", JSON.stringify(cart));
   }
 });

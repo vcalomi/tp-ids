@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
     totalPriceElement.textContent = totalPrice.toFixed(2);
   }
 
+
   deleteAddressButton.addEventListener("click", async function (e) {
     e.preventDefault();
     try {
@@ -47,6 +48,19 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error(error);
     }
   });
+  function loadSavedAddress() {
+    const possibleAddress = localStorage.getItem("address");
+    if (possibleAddress) {
+      const savedAddressData = JSON.parse(possibleAddress);
+      document.getElementById("street").value = savedAddressData.street;
+      document.getElementById("city").value = savedAddressData.city;
+      document.getElementById("number").value = savedAddressData.number;
+      document.getElementById("zipCode").value = savedAddressData.zipCode;
+      document.getElementById("province").value = savedAddressData.province;
+      addressId = savedAddressData.id;
+      placeOrderButton.disabled = false;
+    }
+  }
 
   customerForm.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -64,19 +78,38 @@ document.addEventListener("DOMContentLoaded", function () {
       province: document.getElementById("province").value,
     };
 
-    try {
-      const response = await fetch("http://localhost:3000/address/add", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(addressData),
-      });
-      const data = await response.json();
+    if (addressId.length != 0) {
+      try {
+        addressData.id = addressId;
+        const response = await fetch(`http://localhost:3000/address/update`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(addressData),
+        });
+        const data = await response.json();
 
-      addressId = data.id;
-      alert("Dirección guardada correctamente.");
-      placeOrderButton.disabled = false;
-    } catch (error) {
-      console.error("Error al guardar la dirección:", error);
+        addressId = data.id;
+        alert("Dirección guardada correctamente.");
+        localStorage.setItem("address", JSON.stringify(data));
+      } catch (error) {
+        console.error("Error al guardar la dirección:", error);
+      }
+    } else {
+      try {
+        const response = await fetch("http://localhost:3000/address/add", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(addressData),
+        });
+        const data = await response.json();
+
+        addressId = data.id;
+        alert("Dirección guardada correctamente.");
+        placeOrderButton.disabled = false;
+        localStorage.setItem("address", JSON.stringify(data));
+      } catch (error) {
+        console.error("Error al guardar la dirección:", error);
+      }
     }
   });
 
@@ -105,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
       const data = await response.json();
       alert("Pedido realizado con éxito.");
-      localStorage.setItem("carrito", []);
+      localStorage.setItem("carrito", JSON.stringify([]));
       window.location.href = "/";
     } catch (error) {
       console.error("Error al realizar el pedido:", error);
@@ -113,4 +146,5 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   loadCartItems();
+  loadSavedAddress();
 });
