@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("zipCode").value = savedAddressData.zipCode;
       document.getElementById("province").value = savedAddressData.province;
       addressId = savedAddressData.id;
+      placeOrderButton.disabled = false;
     }
   }
 
@@ -70,7 +71,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         addressId = data.id;
         alert("Dirección guardada correctamente.");
-        placeOrderButton.disabled = false;
         localStorage.setItem("address", JSON.stringify(data));
       } catch (error) {
         console.error("Error al guardar la dirección:", error);
@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
       const data = await response.json();
       alert("Pedido realizado con éxito.");
-      localStorage.setItem("carrito", []);
+      localStorage.setItem("carrito", JSON.stringify([]));
       window.location.href = "/";
     } catch (error) {
       console.error("Error al realizar el pedido:", error);
