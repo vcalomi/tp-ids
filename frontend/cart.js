@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const customerForm = document.getElementById("customer-form");
   const addressForm = document.getElementById("address-form");
   const placeOrderButton = document.getElementById("place-order");
+  const deleteAddressButton = document.getElementById("delete-address");
 
   let ownerName = "";
   let addressId = "";
@@ -29,6 +30,24 @@ document.addEventListener("DOMContentLoaded", function () {
     totalPriceElement.textContent = totalPrice.toFixed(2);
   }
 
+
+  deleteAddressButton.addEventListener("click", async function (e) {
+    e.preventDefault();
+    try {
+      await fetch(`http://localhost:3000/address/delete/${addressId}`, {
+        method: "DELETE",
+      });
+      document.getElementById("street").value = "";
+      document.getElementById("city").value = "";
+      document.getElementById("number").value = "";
+      document.getElementById("zipCode").value = "";
+      document.getElementById("province").value = "";
+      placeOrderButton.disabled = true;
+      alert("Direccion eliminada con exito");
+    } catch (error) {
+      console.error(error);
+    }
+  });
   function loadSavedAddress() {
     const possibleAddress = localStorage.getItem("address");
     if (possibleAddress) {
