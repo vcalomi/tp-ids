@@ -7,38 +7,51 @@ const orderRepository = {
       data: {
         totalPrice: orderData.totalPrice,
         address: {
-          connect: { id: orderData.addressId }
+          connect: { id: orderData.addressId },
         },
         ownerName: orderData.ownerName,
         orderStatus: orderData.orderStatus,
         products: {
-          create: orderData.products.map(product => ({
+          create: orderData.products.map((product) => ({
             product: {
-              connect: { id: product.productId }
+              connect: { id: product.productId },
             },
-            quantity: product.quantity
-          }))
-        }
+            quantity: product.quantity,
+          })),
+        },
       },
       include: {
         products: {
           include: {
-            product: true
-          }
-        }
-      }
+            product: true,
+          },
+        },
+      },
     });
     const formattedOrder = {
       ...order,
-      products: order.products.map(orderProduct => ({
+      products: order.products.map((orderProduct) => ({
         productId: orderProduct.product.id,
         name: orderProduct.product.name,
         quantity: orderProduct.quantity,
-        value: orderProduct.product.value
-      }))
+        value: orderProduct.product.value,
+      })),
     };
 
     return formattedOrder;
+  },
+  async getOrders() {
+    const orders = await prisma.order.findMany({
+      include: {
+        products: {
+          include: {
+            product: true,
+          },
+        },
+        address: true,
+      },
+    });
+    return orders;
   },
 };
 
