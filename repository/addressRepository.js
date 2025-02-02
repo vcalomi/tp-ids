@@ -36,11 +36,11 @@ const AddressRepository = {
         id: parseInt(addressData.id)
       },
       data: {
-        number: addressData.number,
+        number: parseInt(addressData.number),
         street: addressData.street,
         city: addressData.city,
         province: addressData.province,
-        zipCode: addressData.zipCode,
+        zipCode: parseInt(addressData.zipCode),
       },
     })
     return updatedAddress
