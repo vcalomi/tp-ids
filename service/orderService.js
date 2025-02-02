@@ -18,6 +18,11 @@ async function createOrder(orderData) {
   return orderRepository.createOrder({totalPrice: totalPrice, address: address, addressId: orderData.addressId, products: products, ownerName: orderData.ownerName, orderStatus: "PENDIENTE"});
 }
 
+async function getOrders() {
+  return orderRepository.getOrders()
+}
+
 module.exports = {
   createOrder,
+  getOrders
 };

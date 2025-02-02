@@ -534,3 +534,70 @@ nav {
 .delete-button:hover {
   background-color: #d87a8e;
 }
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f8f8ec;
+}
+
+.order-details {
+  flex: 1;
+}
+
+.order-details h3 {
+  margin: 0;
+  font-size: 1.5em;
+  color: #45151b;
+}
+
+.order-details p {
+  margin: 5px 0;
+}
+
+.order-details ul {
+  margin: 5px 0;
+  padding-left: 20px;
+}
+
+.order-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-button,
+.delete-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.edit-button {
+  background-color: #4caf50;
+  color: white;
+}
+
+.edit-button:hover {
+  background-color: #45a049;
+}
+
+.delete-button {
+  background-color: #ea9dae;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #d87a8e;
+}
