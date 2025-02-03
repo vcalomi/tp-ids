@@ -1,10 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const orderService = require("../service/orderService.js");
+const authMiddleware = require("../middleware/auth.js");
 
-router.post("/create", async (req, res) => {
+router.post("/create", authMiddleware, async (req, res) => {
   try {
-    const order = await orderService.createOrder(req.body);
+    const userId = req.user.id;
+    const orderData = { ...req.body, userId };
+    const order = await orderService.createOrder(orderData);
     const location = `/orders/${order.id}`;
     res.location(location).status(201).send(order);
   } catch (error) {
