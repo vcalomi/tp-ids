@@ -28,4 +28,14 @@ router.get("/all", authMiddleware, async (_req, res) => {
   }
 });
 
+router.get("/", authMiddleware, async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const orders = await orderService.getUserOrders(userId);
+    res.status(200).send(orders);
+  } catch (error) {
+    res.status(400).send({ error: error.message });
+  }
+});
+
 module.exports = router;

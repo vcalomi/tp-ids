@@ -30,7 +30,13 @@ async function getOrders() {
   return orderRepository.getOrders();
 }
 
+async function getUserOrders(userId) {
+  const user = await authService.findUserById(userId);
+  return user.orders;
+}
+
 module.exports = {
   createOrder,
   getOrders,
+  getUserOrders,
 };
