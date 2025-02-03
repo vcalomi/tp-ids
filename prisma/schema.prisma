@@ -57,7 +57,6 @@ model Order {
   id          Int            @id @default(autoincrement())
   totalPrice  Decimal
   products    OrderProduct[]
-  ownerName   String
   orderStatus String
   user AppUser @relation(fields: [userId], references: [id])
   userId Int
