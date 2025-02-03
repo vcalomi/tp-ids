@@ -10,6 +10,14 @@ const UserRepository = {
     });
     return user;
   },
+  async findUserById(userId) {
+    const user = await prisma.appUser.findUnique({
+      where: {
+        id: userId,
+      },
+    });
+    return user;
+  },
   async createUser(username, password) {
     const user = await prisma.appUser.create({
       data: {

@@ -1,7 +1,15 @@
 const AddressRepository = require("../repository/addressRepository.js");
+const authService = require("./authService.js");
 
-function validateAddressData(data) {
-  const { number, street, city, province, zipCode } = data;
+async function validateAddressData(data) {
+  const { number, street, city, province, zipCode, userId } = data;
+
+  if (userId) {
+    const user = await authService.findUserById(userId);
+    if (!user) {
+      throw new Error("User doesn't exist");
+    }
+  }
 
   if (!city || city.trim().length === 0) {
     throw new Error("Address city is required and cannot be empty");
@@ -33,7 +41,7 @@ async function addAddress(addressData) {
     province: addressData.province,
     city: addressData.city,
   };
-  validateAddressData(addressData);
+  await validateAddressData(addressData);
   return AddressRepository.addAddress(parsedData);
 }
 
