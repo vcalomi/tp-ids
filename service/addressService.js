@@ -26,6 +26,7 @@ function validateAddressData(data) {
 
 async function addAddress(addressData) {
   const parsedData = {
+    userId: parseInt(addressData.userId),
     street: addressData.street,
     number: parseInt(addressData.number),
     zipCode: parseInt(addressData.zipCode),
