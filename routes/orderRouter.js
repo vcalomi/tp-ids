@@ -15,8 +15,12 @@ router.post("/create", authMiddleware, async (req, res) => {
   }
 });
 
-router.get("/", async (_req, res) => {
+router.get("/all", authMiddleware, async (_req, res) => {
   try {
+    const user = req.user;
+    if (user.role !== "ADMIN") {
+      res.status(401);
+    }
     const orders = await orderService.getOrders();
     res.status(200).send(orders);
   } catch (error) {
