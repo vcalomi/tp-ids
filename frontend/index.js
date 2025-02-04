@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  const possibleUser = localStorage.getItem("carrito");
+  const possibleUser = localStorage.getItem("user");
   let user = null;
   if (possibleUser) {
     return;
