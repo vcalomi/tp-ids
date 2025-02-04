@@ -1,15 +1,15 @@
-import { addToCart } from "./productService.js";
+import { addToCart } from "../service/productService.js";
 
-function loadSweet() {
+function loadBeverage() {
   const products = JSON.parse(localStorage.getItem("products"));
   const title = document.getElementById("TITLE");
-  const sweetProducts = products.filter((product) =>
-    product.type.includes("DULCE")
-  );
 
-  for (let i = 0; i < sweetProducts.length; i++) {
-    const sweetDiv = document.createElement("div");
-    sweetDiv.className = "menu-dulces";
+  const beverageProducts = products.filter((product) =>
+    product.type.includes("BEBIDA")
+  );
+  for (let i = 0; i < beverageProducts.length; i++) {
+    const beverageDiv = document.createElement("div");
+    beverageDiv.className = "menu-dulces";
     const productImg = document.createElement("img");
     productImg.src =
       "https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D";
@@ -19,26 +19,26 @@ function loadSweet() {
     productDiv.className = "producto";
     const productName = document.createElement("p");
     productName.className = "nombre";
-    productName.innerText = sweetProducts[i].name;
+    productName.innerText = beverageProducts[i].name;
     const productDescription = document.createElement("p");
     productDescription.className = "descripcion";
-    productDescription.innerText = sweetProducts[i].description;
+    productDescription.innerText = beverageProducts[i].description;
     const productPrice = document.createElement("p");
     productPrice.className = "precio";
-    productPrice.innerText = sweetProducts[i].value;
+    productPrice.innerText = beverageProducts[i].value;
     productDiv.appendChild(productName);
     productDiv.appendChild(productDescription);
     productDiv.appendChild(productPrice);
     const addToCartButton = document.createElement("button");
     addToCartButton.innerText = "Agregar al carrito";
     addToCartButton.addEventListener("click", () =>
-      addToCart(sweetProducts, i)
+      addToCart(beverageProducts, i)
     );
     productDiv.appendChild(addToCartButton);
-    title.append(sweetDiv);
-    sweetDiv.appendChild(productImg);
-    sweetDiv.appendChild(productDiv);
+    title.append(beverageDiv);
+    beverageDiv.appendChild(productImg);
+    beverageDiv.appendChild(productDiv);
   }
 }
 
-loadSweet();
+loadBeverage();

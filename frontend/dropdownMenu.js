@@ -7,10 +7,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const user = JSON.parse(localStorage.getItem("user"));
   if (user && user.role === "ADMIN") {
     [
-      { title: "Carrito", url: "./cart.html" },
-      { title: "Subir Producto", url: "./upload-product.html" },
-      { title: "Administrar Productos", url: "./manage-products.html" },
-      { title: "Administrar Ordenes", url: "./manage-orders.html" },
+      { title: "Carrito", url: "./cart/cart.html" },
+      { title: "Subir Producto", url: "./products/upload-product.html" },
+      {
+        title: "Administrar Productos",
+        url: "./products/manage-products.html",
+      },
+      { title: "Administrar Ordenes", url: "./orders/manage-orders.html" },
     ].map(({ title, url }) => {
       const option = document.createElement("li");
       const link = document.createElement("a");
@@ -22,9 +25,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   } else if (user) {
     [
-      { title: "Carrito", url: "./cart.html" },
-      { title: "Administrar Direccion", url: "./upload-product.html" },
-      { title: "Administrar Ordenes", url: "./manage-orders.html" },
+      { title: "Carrito", url: "./cart/cart.html" },
+      { title: "Administrar Direccion", url: "./address/manage-address.html" },
+      { title: "Administrar Ordenes", url: "./orders/manage-user-orders.html" },
     ].map(({ title, url }) => {
       const option = document.createElement("li");
       const link = document.createElement("a");
