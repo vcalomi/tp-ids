@@ -35,8 +35,13 @@ async function getUserOrders(userId) {
   return user.orders;
 }
 
+async function setOrderStatus(orderId, orderStatus) {
+  await orderRepository.setOrderStatus(parseInt(orderId), orderStatus);
+}
+
 module.exports = {
   createOrder,
   getOrders,
   getUserOrders,
+  setOrderStatus,
 };

@@ -19,12 +19,27 @@ router.get("/all", authMiddleware, async (_req, res) => {
   try {
     const user = req.user;
     if (user.role !== "ADMIN") {
-      res.status(401);
+      res.status(401).end();
     }
     const orders = await orderService.getOrders();
     res.status(200).send(orders);
   } catch (error) {
     res.status(500).send({ error: error.message });
+  }
+});
+
+router.put("/changeStatus/:orderId", authMiddleware, async (req, res) => {
+  try {
+    const user = req.user;
+    if (user.role !== "ADMIN") {
+      res.status(401).end();
+    }
+
+    await orderService.setOrderStatus(req.params.orderId, req.body.orderStatus);
+    res.status(204).end();
+  } catch (error) {
+    console.error(error);
+    res.status(400).send(error.message);
   }
 });
 

@@ -52,6 +52,16 @@ const orderRepository = {
     });
     return orders;
   },
+  async setOrderStatus(orderId, orderStatus) {
+    await prisma.order.update({
+      where: {
+        id: orderId,
+      },
+      data: {
+        orderStatus: orderStatus,
+      },
+    });
+  },
 };
 
 module.exports = orderRepository;
