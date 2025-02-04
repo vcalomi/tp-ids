@@ -1,9 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const productService = require("../service/productService.js");
+const authMiddleware = require("../middleware/auth.js");
 
-router.post("/create", async (req, res) => {
+router.post("/create", authMiddleware, async (req, res) => {
   try {
+    const user = req.user;
+    if (user.role !== "ADMIN") {
+      res.status(401).end();
+    }
     const product = await productService.createProduct(req.body);
     const location = `/products/${product.id}`;
     res.location(location).status(201).send(product);
@@ -26,8 +31,12 @@ router.get("/:productId", async (req, res) => {
   }
 });
 
-router.put("/edit/:productId", async (req, res) => {
+router.put("/edit/:productId", authMiddleware, async (req, res) => {
   try {
+    const user = req.user;
+    if (user.role !== "ADMIN") {
+      res.status(401).end();
+    }
     await productService.editProduct(req.params.productId, req.body);
     res.status(204).end();
   } catch (error) {
@@ -35,8 +44,12 @@ router.put("/edit/:productId", async (req, res) => {
   }
 });
 
-router.delete("/delete/:productId", async (req, res) => {
+router.delete("/delete/:productId", authMiddleware, async (req, res) => {
   try {
+    const user = req.user;
+    if (user.role !== "ADMIN") {
+      res.status(401).end();
+    }
     await productService.deleteProduct(req.params.productId);
     res.status(204).end();
   } catch (error) {
