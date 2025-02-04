@@ -4,16 +4,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const dropdownMenu = document.getElementById("dropdown-menu");
   const optionList = document.createElement("ul");
   dropdownMenu.appendChild(optionList);
-  //const user = JSON.parse(localStorage.getItem("user"));
-  const user = {
-    role: "",
-  };
+  const user = JSON.parse(localStorage.getItem("user"));
   if (user && user.role === "ADMIN") {
     [
-      { title: "Carrito", link: "./cart.html" },
-      { title: "Subir Producto", link: "./upload-product.html" },
-      { title: "Administrar Productos", link: "./manage-products.html" },
-      { title: "Administrar Ordenes", link: "./manage-orders.html" },
+      { title: "Carrito", url: "./cart.html" },
+      { title: "Subir Producto", url: "./upload-product.html" },
+      { title: "Administrar Productos", url: "./manage-products.html" },
+      { title: "Administrar Ordenes", url: "./manage-orders.html" },
     ].map(({ title, url }) => {
       const option = document.createElement("li");
       const link = document.createElement("a");
@@ -25,9 +22,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   } else if (user) {
     [
-      { title: "Carrito", link: "./cart.html" },
-      { title: "Administrar Direccion", link: "./upload-product.html" },
-      { title: "Administrar Ordenes", link: "./manage-orders.html" },
+      { title: "Carrito", url: "./cart.html" },
+      { title: "Administrar Direccion", url: "./upload-product.html" },
+      { title: "Administrar Ordenes", url: "./manage-orders.html" },
     ].map(({ title, url }) => {
       const option = document.createElement("li");
       const link = document.createElement("a");
@@ -39,8 +36,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   } else {
     [
-      { title: "Registrarse", link: "./sign-up.html" },
-      { title: "Iniciar sesion", link: "./sign-in.html" },
+      { title: "Registrarse", url: "./authentication/sign-up.html" },
+      { title: "Iniciar sesion", url: "./authentication/sign-in.html" },
     ].map(({ title, url }) => {
       const option = document.createElement("li");
       const link = document.createElement("a");
@@ -65,14 +62,3 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
-
-function getPayloadFromToken(token) {
-  try {
-    const [header, payload, signature] = token.split(".");
-    const decodedPayload = atob(payload.replace(/-/g, "+").replace(/_/g, "/"));
-    return JSON.parse(decodedPayload);
-  } catch (error) {
-    console.error("Error decoding token:", error);
-    return null;
-  }
-}
