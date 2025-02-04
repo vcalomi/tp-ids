@@ -15,7 +15,7 @@ router.post("/create", authMiddleware, async (req, res) => {
   }
 });
 
-router.get("/all", authMiddleware, async (_req, res) => {
+router.get("/all", authMiddleware, async (req, res) => {
   try {
     const user = req.user;
     if (user.role !== "ADMIN") {

@@ -47,7 +47,6 @@ const orderRepository = {
             product: true,
           },
         },
-        address: true,
       },
     });
     return orders;
