@@ -31,11 +31,15 @@ router.get("/get/:id", authMiddleware, async (req, res) => {
   }
 });
 
-router.delete("/delete/:id", async (req, res) => {
+router.delete("/delete/:id", authMiddleware, async (req, res) => {
   try {
     if (req.params.id) {
-      const id = req.params.id;
-      const deletedAddress = await addressService.deleteAddress(id);
+      const addressId = req.params.id;
+      const userId = req.user.id;
+      const deletedAddress = await addressService.deleteAddress(
+        addressId,
+        userId
+      );
       res.status(200).send({
         message: `La direccion ${deletedAddress.street} ${deletedAddress.number} fue borrada correctamente.`,
       });
@@ -47,11 +51,13 @@ router.delete("/delete/:id", async (req, res) => {
   }
 });
 
-router.put("/update", async (req, res) => {
+router.put("/update", authMiddleware, async (req, res) => {
   try {
-    const address = await addressService.updateAddress(req.body);
+    const userId = req.user.id;
+    const address = await addressService.updateAddress(req.body, userId);
     res.status(200).send(address);
   } catch (error) {
+    console.error(error);
     res.status(400).send({ error: error.message });
   }
 });
