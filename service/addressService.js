@@ -57,14 +57,14 @@ async function addAddress(addressData) {
 }
 
 async function getAddress(addressId, userId) {
-  if (validateAddressOwnership(addressId, userId)) {
+  if (!validateAddressOwnership(addressId, userId)) {
     throw new Error("Error when checking address ownership");
   }
   return AddressRepository.getAddress(addressId);
 }
 
 async function deleteAddress(addressId, userId) {
-  if (validateAddressOwnership(addressId, userId)) {
+  if (!validateAddressOwnership(addressId, userId)) {
     throw new Error("Error when checking address ownership");
   }
   try {
@@ -76,7 +76,7 @@ async function deleteAddress(addressId, userId) {
 
 async function updateAddress(addressData, userId) {
   validateAddressData(addressData);
-  if (validateAddressOwnership(addressData.id, userId)) {
+  if (!validateAddressOwnership(addressData.id, userId)) {
     throw new Error("Error when checking address ownership");
   }
   return AddressRepository.updateAddress(addressData);
