@@ -6,10 +6,9 @@ const orderRepository = {
     const order = await prisma.order.create({
       data: {
         totalPrice: orderData.totalPrice,
-        address: {
-          connect: { id: orderData.addressId },
+        user: {
+          connect: { id: orderData.userId },
         },
-        ownerName: orderData.ownerName,
         orderStatus: orderData.orderStatus,
         products: {
           create: orderData.products.map((product) => ({
@@ -48,10 +47,19 @@ const orderRepository = {
             product: true,
           },
         },
-        address: true,
       },
     });
     return orders;
+  },
+  async setOrderStatus(orderId, orderStatus) {
+    await prisma.order.update({
+      where: {
+        id: orderId,
+      },
+      data: {
+        orderStatus: orderStatus,
+      },
+    });
   },
 };
 
