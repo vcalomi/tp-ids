@@ -45,15 +45,22 @@ async function addAddress(addressData) {
   return AddressRepository.addAddress(parsedData);
 }
 
-async function getAddress(id) {
-  return AddressRepository.getAddress(id);
+async function getAddress(addressId, userId) {
+  const user = await authService.findUserById(userId);
+  if (!user) {
+    throw new Error("User doesn't exist");
+  }
+  if (user.address.id !== addressId) {
+    throw new Error("Address doesn't belong to user");
+  }
+  return AddressRepository.getAddress(addressId);
 }
 
 async function deleteAddress(id) {
   try {
     return AddressRepository.deleteAddress(id);
   } catch (error) {
-    throw new Error("La direccion no existe.");
+    throw new Error("The address doesn't exist");
   }
 }
 

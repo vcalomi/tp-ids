@@ -15,6 +15,9 @@ const UserRepository = {
       where: {
         id: userId,
       },
+      include: {
+        address: true,
+      },
     });
     return user;
   },

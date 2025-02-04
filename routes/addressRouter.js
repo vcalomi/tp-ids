@@ -15,13 +15,19 @@ router.post("/add", authMiddleware, async (req, res) => {
   }
 });
 
-router.get("/get/:id", async (req, res) => {
-  if (req.params.id) {
-    const id = req.params.id;
-    const address = await addressService.getAddress(id);
-    res.status(200).send(address);
-  } else {
-    res.status(400).send({ error: "Falta ID" });
+router.get("/get/:id", authMiddleware, async (req, res) => {
+  try {
+    if (req.params.id) {
+      const addressId = req.params.id;
+      const userId = req.user.id;
+      const address = await addressService.getAddress(addressId, userId);
+      res.status(200).send(address);
+    } else {
+      res.status(400).send({ error: "Falta ID" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(401).send(error.message);
   }
 });
 
