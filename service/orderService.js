@@ -3,7 +3,6 @@ const productService = require("./productService.js");
 const authService = require("./authService.js");
 
 async function calculatePrice(products) {
-  console.log(products);
   let totalPrice = 0;
   for (let i = 0; i < products.length; i++) {
     const product = await productService.getProduct(products[i].productId);

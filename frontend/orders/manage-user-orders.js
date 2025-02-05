@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
         },
       });
       const information = await response.json();
-      console.log(information);
 
       displayOrders(information.address, information.orders);
     } catch (error) {
