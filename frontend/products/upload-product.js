@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
       const data = await response.json();
       alert("Producto subido con éxito.");
-      window.location.href = "./index.html";
+      window.location.href = "../index.html";
     } catch (error) {
       console.error("Error al subir el producto:", error);
     }
