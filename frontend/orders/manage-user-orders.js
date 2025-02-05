@@ -44,7 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
           <p><strong>Total:</strong> $${order.totalPrice}</p>
         </div>
         <div class="order-actions">
-          
           <button class="delete-button" data-id="${
             order.id
           }">Cancelar Orden</button>
@@ -52,6 +51,17 @@ document.addEventListener("DOMContentLoaded", function () {
       `;
       ordersList.appendChild(orderItem);
     });
+
+    document.querySelectorAll(".delete-button").forEach((button) => {
+      button.addEventListener("click", function () {
+        const orderId = this.getAttribute("data-id");
+        cancelOrder(orderId);
+      });
+    });
+  }
+
+  async function cancelOrder(orderId) {
+    alert(`Cancelar orden #${orderId}`);
   }
 
   fetchOrders();
