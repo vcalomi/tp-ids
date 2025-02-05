@@ -17,6 +17,15 @@ const UserRepository = {
       },
       include: {
         address: true,
+        orders: {
+          include: {
+            products: {
+              include: {
+                product: true,
+              },
+            },
+          },
+        },
       },
     });
     return user;
