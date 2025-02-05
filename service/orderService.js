@@ -32,7 +32,7 @@ async function getOrders() {
 
 async function getUserOrders(userId) {
   const user = await authService.findUserById(userId);
-  return user.orders;
+  return { orders: user.orders, address: user.address };
 }
 
 async function setOrderStatus(orderId, orderStatus) {
