@@ -1,3 +1,5 @@
+const token = localStorage.getItem("token");
+
 document.addEventListener("DOMContentLoaded", function () {
   const ordersList = document.getElementById("orders-list");
 
@@ -5,17 +7,19 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       const response = await fetch("http://localhost:3000/orders/", {
         headers: {
-          "x-auth-token": localStorage.getItem("token"),
+          "x-auth-token": token,
         },
       });
-      const orders = await response.json();
-      displayOrders(orders);
+      const information = await response.json();
+      console.log(information);
+
+      displayOrders(information.address, information.orders);
     } catch (error) {
       console.error("Error al obtener las órdenes:", error);
     }
   }
 
-  function displayOrders(orders) {
+  function displayOrders(address, orders) {
     ordersList.innerHTML = "";
 
     orders.forEach((order) => {
@@ -24,10 +28,9 @@ document.addEventListener("DOMContentLoaded", function () {
       orderItem.innerHTML = `
         <div class="order-details">
           <h3>Orden #${order.id}</h3>
-          <p><strong>Cliente:</strong> ${order.ownerName}</p>
-          <p><strong>Dirección:</strong> ${order.address.street} ${
-        order.address.number
-      }, ${order.address.city}</p>
+          <p><strong>Dirección:</strong> ${address.street} ${address.number}, ${
+        address.city
+      }</p>
           <p><strong>Productos:</strong></p>
           <ul>
             ${order.products
@@ -41,8 +44,10 @@ document.addEventListener("DOMContentLoaded", function () {
           <p><strong>Total:</strong> $${order.totalPrice}</p>
         </div>
         <div class="order-actions">
-          <button class="edit-button" data-id="${order.id}">Editar</button>
-          <button class="delete-button" data-id="${order.id}">Eliminar</button>
+          
+          <button class="delete-button" data-id="${
+            order.id
+          }">Cancelar Orden</button>
         </div>
       `;
       ordersList.appendChild(orderItem);
