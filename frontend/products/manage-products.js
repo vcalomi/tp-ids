@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const token = localStorage.getItem("token");
   const productList = document.getElementById("product-list");
   async function fetchProducts() {
     try {
@@ -46,6 +47,9 @@ document.addEventListener("DOMContentLoaded", function () {
             `http://localhost:3000/products/delete/${productId}`,
             {
               method: "DELETE",
+              headers: {
+                "x-auth-token": token,
+              },
             }
           );
           alert("Producto eliminado con éxito.");
@@ -60,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
     editButtons.forEach((button) => {
       button.addEventListener("click", function () {
         const productId = button.getAttribute("data-id");
-        window.location.href = `edit-product.html?id=${productId}`;
+        window.location.href = `./edit-product.html?id=${productId}`;
       });
     });
   }

@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const token = localStorage.getItem("token");
   const urlParams = new URLSearchParams(window.location.search);
   const productId = urlParams.get("id");
 
@@ -46,7 +47,10 @@ document.addEventListener("DOMContentLoaded", function () {
         `http://localhost:3000/products/edit/${productId}`,
         {
           method: "PUT",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "x-auth-token": token,
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify(productData),
         }
       );
