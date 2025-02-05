@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const token = localStorage.getItem("token");
   const uploadForm = document.getElementById("upload-product-form");
 
   uploadForm.addEventListener("submit", async function (e) {
@@ -19,12 +20,18 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       const response = await fetch("http://localhost:3000/products/create", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "x-auth-token": token,
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(productData),
       });
-      const data = await response.json();
-      alert("Producto subido con éxito.");
-      window.location.href = "./index.html";
+      if (response.status === 201) {
+        alert("Producto subido con éxito.");
+        window.location.href = "../index.html";
+      } else {
+        alert("Ha ocurrido un error");
+      }
     } catch (error) {
       console.error("Error al subir el producto:", error);
     }

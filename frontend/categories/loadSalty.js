@@ -1,4 +1,4 @@
-import { addToCart } from "./productService.js";
+import { addToCart } from "../service/productService.js";
 
 function loadSalty() {
   const products = JSON.parse(localStorage.getItem("products"));

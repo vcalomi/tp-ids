@@ -16,23 +16,19 @@ fetchProducts().then((data) =>
 );
 
 export function addToCart(products, index) {
-  if (JSON.parse(localStorage.getItem("carrito")).length === 0) {
-    const cart = [];
-    cart.push({
-      id: 1,
-      name: products[index].name,
-      value: products[index].value,
-      quantity: 1,
-    });
-    localStorage.setItem("carrito", JSON.stringify(cart));
+  let cart = JSON.parse(localStorage.getItem("carrito")) || [];
+  const existingProduct = cart.find(
+    (product) => product.id === products[index].id
+  );
+  if (existingProduct) {
+    existingProduct.quantity += 1;
   } else {
-    const cart = JSON.parse(localStorage.getItem("carrito"));
     cart.push({
-      id: 1,
+      id: products[index].id,
       name: products[index].name,
       value: products[index].value,
       quantity: 1,
     });
-    localStorage.setItem("carrito", JSON.stringify(cart));
   }
+  localStorage.setItem("carrito", JSON.stringify(cart));
 }

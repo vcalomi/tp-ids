@@ -53,4 +53,27 @@ router.get("/", authMiddleware, async (req, res) => {
   }
 });
 
+router.delete("/delete/:orderId", authMiddleware, async (req, res) => {
+  try {
+    const userRole = req.user.role;
+    if (userRole !== "ADMIN") {
+      res.status(401).end();
+    }
+    await orderService.deleteOrder(req.params.orderId);
+    res.status(204).end();
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+});
+
+router.delete("/cancel/:orderId", authMiddleware, async (req, res) => {
+  try {
+    const userId = req.user.id;
+    await orderService.cancelOrder(req.params.orderId, userId);
+    res.status(204).end();
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+});
+
 module.exports = router;

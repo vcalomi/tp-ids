@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../style.css" />
     <title>Carrito - Sweet Tooth</title>
   </head>
   <body>
     <nav>
       <i class="fa-solid fa-bars" id="hamburger-button"></i>
-      <h1 id="title"><a href="index.html">Sweet Tooth</a></h1>
+      <h1 id="title"><a href="../index.html">Sweet Tooth</a></h1>
       <button class="order-button"><a href="/">ORDENAR</a></button>
     </nav>
 
@@ -24,29 +24,44 @@
         <h2>Datos del Cliente</h2>
         <input
           type="text"
-          id="customer-name"
+          id="username"
           placeholder="Nombre completo"
-          required
+          disabled
         />
-        <button type="submit" class="order-button">Guardar Datos</button>
       </form>
 
       <form id="address-form" class="address-form">
         <h2>Dirección de Envío</h2>
-        <input type="text" id="street" placeholder="Calle" required />
-        <input type="number" id="number" placeholder="Número" required />
-        <input type="text" id="city" placeholder="Ciudad" required />
-        <input type="text" id="zipCode" placeholder="Código Postal" required />
-        <input type="text" id="province" placeholder="Provincia" required />
-        <button id="delete-address" type="submit" class="order-button">
+        <input disabled type="text" id="street" placeholder="Calle" required />
+        <input
+          disabled
+          type="number"
+          id="number"
+          placeholder="Número"
+          required
+        />
+        <input disabled type="text" id="city" placeholder="Ciudad" required />
+        <input
+          disabled
+          type="text"
+          id="zipCode"
+          placeholder="Código Postal"
+          required
+        />
+        <input
+          disabled
+          type="text"
+          id="province"
+          placeholder="Provincia"
+          required
+        />
+        <!-- <button id="delete-address" type="submit" class="order-button">
           Eliminar Dirección
         </button>
-        <button type="submit" class="order-button">Guardar Dirección</button>
+        <button type="submit" class="order-button">Guardar Dirección</button> -->
       </form>
 
-      <button id="place-order" class="order-button" disabled>
-        Realizar Pedido
-      </button>
+      <button id="place-order" class="order-button">Realizar Pedido</button>
     </div>
 
     <footer class="footer">
@@ -69,7 +84,7 @@
       </ul>
       <ul class="menu">
         <li class="menu-elem">
-          <a href="index.html" class="menu-icon"> Inicio </a>
+          <a href="../index.html" class="menu-icon"> Inicio </a>
           <a href="" class="menu-icon"> Contacto </a>
           <a href="" class="menu-icon"> Sobre Nosotros </a>
         </li>

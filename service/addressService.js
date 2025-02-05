@@ -56,11 +56,9 @@ async function addAddress(addressData) {
   return AddressRepository.addAddress(parsedData);
 }
 
-async function getAddress(addressId, userId) {
-  if (!validateAddressOwnership(addressId, userId)) {
-    throw new Error("Error when checking address ownership");
-  }
-  return AddressRepository.getAddress(addressId);
+async function getAddress(userId) {
+  const user = await authService.findUserById(userId);
+  return user.address;
 }
 
 async function deleteAddress(addressId, userId) {

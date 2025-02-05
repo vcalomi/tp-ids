@@ -6,7 +6,7 @@ async function calculatePrice(products) {
   let totalPrice = 0;
   for (let i = 0; i < products.length; i++) {
     const product = await productService.getProduct(products[i].productId);
-    totalPrice += product.value;
+    totalPrice += product.value * products[i].quantity;
   }
   return totalPrice;
 }
@@ -32,11 +32,26 @@ async function getOrders() {
 
 async function getUserOrders(userId) {
   const user = await authService.findUserById(userId);
-  return user.orders;
+  return { orders: user.orders, address: user.address };
 }
 
 async function setOrderStatus(orderId, orderStatus) {
   await orderRepository.setOrderStatus(parseInt(orderId), orderStatus);
+}
+
+async function deleteOrder(orderId) {
+  await orderRepository.deleteOrder(orderId);
+}
+
+async function cancelOrder(orderId, userId) {
+  const userInfo = await getUserOrders(userId);
+  const order = userInfo.orders.find((order) => order.id === parseInt(orderId));
+
+  if (!order) {
+    throw new Error("La orden no existe o no pertenece al usuario.");
+  }
+
+  await orderRepository.deleteOrder(orderId);
 }
 
 module.exports = {
@@ -44,4 +59,6 @@ module.exports = {
   getOrders,
   getUserOrders,
   setOrderStatus,
+  deleteOrder,
+  cancelOrder,
 };
