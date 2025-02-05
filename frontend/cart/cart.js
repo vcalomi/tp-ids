@@ -1,14 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
   const cartItems = JSON.parse(localStorage.getItem("carrito")) || [];
+  const user = JSON.parse(localStorage.getItem("user")) || {};
+  const token = localStorage.getItem("token") || "";
   const cartItemsContainer = document.getElementById("cart-items");
   const totalPriceElement = document.getElementById("total-price");
-  const customerForm = document.getElementById("customer-form");
-  const addressForm = document.getElementById("address-form");
   const placeOrderButton = document.getElementById("place-order");
-  const deleteAddressButton = document.getElementById("delete-address");
-
-  let ownerName = "";
-  let addressId = "";
 
   function loadCartItems() {
     cartItemsContainer.innerHTML = "";
@@ -30,116 +26,52 @@ document.addEventListener("DOMContentLoaded", function () {
     totalPriceElement.textContent = totalPrice.toFixed(2);
   }
 
-
-  deleteAddressButton.addEventListener("click", async function (e) {
-    e.preventDefault();
-    try {
-      await fetch(`http://localhost:3000/address/delete/${addressId}`, {
-        method: "DELETE",
-      });
-      document.getElementById("street").value = "";
-      document.getElementById("city").value = "";
-      document.getElementById("number").value = "";
-      document.getElementById("zipCode").value = "";
-      document.getElementById("province").value = "";
-      placeOrderButton.disabled = true;
-      alert("Direccion eliminada con exito");
-    } catch (error) {
-      console.error(error);
-    }
-  });
-  function loadSavedAddress() {
-    const possibleAddress = localStorage.getItem("address");
-    if (possibleAddress) {
-      const savedAddressData = JSON.parse(possibleAddress);
-      document.getElementById("street").value = savedAddressData.street;
-      document.getElementById("city").value = savedAddressData.city;
-      document.getElementById("number").value = savedAddressData.number;
-      document.getElementById("zipCode").value = savedAddressData.zipCode;
-      document.getElementById("province").value = savedAddressData.province;
-      addressId = savedAddressData.id;
-      placeOrderButton.disabled = false;
-    }
-  }
-
-  customerForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-    ownerName = document.getElementById("customer-name").value;
-    alert("Nombre guardado correctamente.");
-  });
-
-  addressForm.addEventListener("submit", async function (e) {
-    e.preventDefault();
-    const addressData = {
-      street: document.getElementById("street").value,
-      city: document.getElementById("city").value,
-      number: document.getElementById("number").value,
-      zipCode: document.getElementById("zipCode").value,
-      province: document.getElementById("province").value,
-    };
-
-    if (addressId.length != 0) {
-      try {
-        addressData.id = addressId;
-        const response = await fetch(`http://localhost:3000/address/update`, {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(addressData),
-        });
-        const data = await response.json();
-
-        addressId = data.id;
-        alert("Dirección guardada correctamente.");
-        localStorage.setItem("address", JSON.stringify(data));
-      } catch (error) {
-        console.error("Error al guardar la dirección:", error);
-      }
-    } else {
-      try {
-        const response = await fetch("http://localhost:3000/address/add", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(addressData),
-        });
-        const data = await response.json();
-
-        addressId = data.id;
-        alert("Dirección guardada correctamente.");
-        placeOrderButton.disabled = false;
-        localStorage.setItem("address", JSON.stringify(data));
-      } catch (error) {
-        console.error("Error al guardar la dirección:", error);
-      }
-    }
-  });
-
-  placeOrderButton.addEventListener("click", async function () {
-    if (!ownerName || !addressId) {
-      alert(
-        "Completa los datos del cliente y la dirección antes de realizar el pedido."
-      );
+  async function loadSavedAddress() {
+    const response = await fetch("http://localhost:3000/address/get", {
+      headers: {
+        "x-auth-token": token,
+      },
+    });
+    if (response.status === 404) {
+      // completar direccion en el perfil
       return;
     }
+    const address = await response.json();
+    document.getElementById("street").value = address.street;
+    document.getElementById("city").value = address.city;
+    document.getElementById("number").value = address.number;
+    document.getElementById("zipCode").value = address.zipCode;
+    document.getElementById("province").value = address.province;
+    placeOrderButton.disabled = false;
+  }
 
+  async function loadUserInformation() {
+    // en un futuro pedir los datos al back
+    document.getElementById("username").value = user.username;
+  }
+
+  placeOrderButton.addEventListener("click", async function () {
     const orderData = {
       products: cartItems.map((item) => ({
         productId: item.id,
         quantity: item.quantity,
       })),
-      ownerName,
-      addressId,
     };
 
     try {
       const response = await fetch("http://localhost:3000/orders/create", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "x-auth-token": token,
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(orderData),
       });
-      const data = await response.json();
-      alert("Pedido realizado con éxito.");
-      localStorage.setItem("carrito", JSON.stringify([]));
-      window.location.href = "/";
+      if (response.status === 201) {
+        alert("Pedido realizado con éxito.");
+        localStorage.setItem("carrito", JSON.stringify([]));
+        window.location.href = "/";
+      }
     } catch (error) {
       console.error("Error al realizar el pedido:", error);
     }
@@ -147,4 +79,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
   loadCartItems();
   loadSavedAddress();
+  loadUserInformation();
 });
