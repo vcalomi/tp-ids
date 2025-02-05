@@ -342,16 +342,26 @@ nav {
   width: 18em;
 }
 
+#hamburger-button {
+  transition: 0.2s ease;
+}
+
+#hamburger-button:hover {
+  cursor: pointer;
+  color: #ea9dae;
+  text-shadow: 1px 1px black;
+}
+
+
 .dropdown-menu {
   display: none;
   position: absolute;
   top: 60px;
-  left: 20px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  left: 14em;
+  background-color: #f8de9c;
   z-index: 1000;
   width: 200px;
+  border-radius: 5px;
 }
 
 .dropdown-menu ul {
@@ -361,17 +371,21 @@ nav {
 }
 
 .dropdown-menu ul li {
-  padding: 10px 20px;
+  padding: 20px 20px;
 }
 
 .dropdown-menu ul li a {
   text-decoration: none;
-  color: #333;
-  font-size: 16px;
+  font-family: "Cocogoose";
+  color: #ffff;
+  text-shadow: 1px 1px black;
+  font-size: 18px;
+  transition: 0.2s ease;
 }
 
 .dropdown-menu ul li a:hover {
-  color: #007bff;
+  color: #ea9dae;
+  text-shadow: 1px 1px black;
 }
 
 .dropdown-menu.active {
