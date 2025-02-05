@@ -63,6 +63,13 @@ document.addEventListener("DOMContentLoaded", function () {
         showStatusOptions(orderId);
       });
     });
+
+    document.querySelectorAll(".delete-button").forEach((button) => {
+      button.addEventListener("click", function () {
+        const orderId = this.getAttribute("data-id");
+        deleteOrder(orderId);
+      });
+    });
   }
 
   function showStatusOptions(orderId) {
@@ -112,6 +119,37 @@ document.addEventListener("DOMContentLoaded", function () {
         document.body.removeChild(dialog);
       }
     });
+  }
+
+  async function deleteOrder(orderId) {
+    const confirmDelete = confirm(
+      "¿Estás seguro de que deseas eliminar esta orden?"
+    );
+    if (!confirmDelete) {
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `http://localhost:3000/orders/delete/${orderId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "x-auth-token": token,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        alert("No se ha podido eliminar la orden");
+        return;
+      }
+
+      location.reload();
+    } catch (error) {
+      console.error("Error al eliminar la orden:", error);
+      alert("Hubo un error al eliminar la orden");
+    }
   }
 
   fetchOrders();
