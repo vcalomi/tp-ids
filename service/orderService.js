@@ -43,10 +43,22 @@ async function deleteOrder(orderId) {
   await orderRepository.deleteOrder(orderId);
 }
 
+async function cancelOrder(orderId, userId) {
+  const userInfo = await getUserOrders(userId);
+  const order = userInfo.orders.find((order) => order.id === parseInt(orderId));
+
+  if (!order) {
+    throw new Error("La orden no existe o no pertenece al usuario.");
+  }
+
+  await orderRepository.deleteOrder(orderId);
+}
+
 module.exports = {
   createOrder,
   getOrders,
   getUserOrders,
   setOrderStatus,
   deleteOrder,
+  cancelOrder,
 };

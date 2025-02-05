@@ -66,4 +66,14 @@ router.delete("/delete/:orderId", authMiddleware, async (req, res) => {
   }
 });
 
+router.delete("/cancel/:orderId", authMiddleware, async (req, res) => {
+  try {
+    const userId = req.user.id;
+    await orderService.cancelOrder(req.params.orderId, userId);
+    res.status(204).end();
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+});
+
 module.exports = router;
