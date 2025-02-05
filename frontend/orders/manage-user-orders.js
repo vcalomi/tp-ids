@@ -60,7 +60,20 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   async function cancelOrder(orderId) {
-    alert(`Cancelar orden #${orderId}`);
+    const response = await fetch(
+      `http://localhost:3000/orders/cancel/${orderId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "x-auth-token": token,
+        },
+      }
+    );
+    if (!response.ok) {
+      alert("Ocurrio un error cancelando la orden");
+      return;
+    }
+    location.reload();
   }
 
   fetchOrders();
