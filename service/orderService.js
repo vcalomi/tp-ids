@@ -39,9 +39,14 @@ async function setOrderStatus(orderId, orderStatus) {
   await orderRepository.setOrderStatus(parseInt(orderId), orderStatus);
 }
 
+async function deleteOrder(orderId) {
+  await orderRepository.deleteOrder(orderId);
+}
+
 module.exports = {
   createOrder,
   getOrders,
   getUserOrders,
   setOrderStatus,
+  deleteOrder,
 };

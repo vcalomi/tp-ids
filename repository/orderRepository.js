@@ -66,6 +66,19 @@ const orderRepository = {
       },
     });
   },
+  async deleteOrder(orderId) {
+    await prisma.orderProduct.deleteMany({
+      where: {
+        orderId: parseInt(orderId),
+      },
+    });
+
+    await prisma.order.delete({
+      where: {
+        id: parseInt(orderId),
+      },
+    });
+  },
 };
 
 module.exports = orderRepository;
