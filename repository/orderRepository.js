@@ -42,6 +42,11 @@ const orderRepository = {
   async getOrders() {
     const orders = await prisma.order.findMany({
       include: {
+        user: {
+          include: {
+            address: true,
+          },
+        },
         products: {
           include: {
             product: true,
