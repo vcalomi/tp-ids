@@ -78,6 +78,10 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   placeOrderButton.addEventListener("click", async function () {
+    if (!cartItems || cartItems.length === 0) {
+      alert("No se puede realizar una orden vacia!");
+      return;
+    }
     const orderData = {
       products: cartItems.map((item) => ({
         productId: item.id,
