@@ -1,21 +1,41 @@
 const express = require("express");
 const router = express.Router();
+const multer = require("multer");
+const path = require("path");
 const productService = require("../service/productService.js");
 const authMiddleware = require("../middleware/auth.js");
 
-router.post("/create", authMiddleware, async (req, res) => {
-  try {
-    const user = req.user;
-    if (user.role !== "ADMIN") {
-      res.status(401).end();
-    }
-    const product = await productService.createProduct(req.body);
-    const location = `/products/${product.id}`;
-    res.location(location).status(201).send(product);
-  } catch (error) {
-    res.status(400).send({ error: error.message });
-  }
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/uploads");
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
 });
+
+const upload = multer({ storage });
+
+router.post(
+  "/create",
+  authMiddleware,
+  upload.single("image"),
+  async (req, res) => {
+    try {
+      const user = req.user;
+      if (user.role !== "ADMIN") {
+        res.status(401).end();
+      }
+      const imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
+      const productData = { ...req.body, imageUrl };
+      const product = await productService.createProduct(productData);
+      const location = `/products/${product.id}`;
+      res.location(location).status(201).send(product);
+    } catch (error) {
+      res.status(400).send({ error: error.message });
+    }
+  }
+);
 
 router.get("/", async (req, res) => {
   const products = await productService.getProducts();

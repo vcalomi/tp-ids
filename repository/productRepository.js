@@ -6,10 +6,13 @@ const ProductRepository = {
     const product = await prisma.product.create({
       data: {
         name: productData.name,
-        value: productData.value,
+        value: parseFloat(productData.value),
         description: productData.description,
-        type: productData.type,
-        calories: productData.calories,
+        type: Array.isArray(productData.type)
+          ? productData.type
+          : [productData.type],
+        calories: parseInt(productData.calories),
+        image: productData.imageUrl,
       },
     });
     return product;
