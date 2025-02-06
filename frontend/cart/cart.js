@@ -1,5 +1,8 @@
+import { API_URL } from "../config.js";
+
 document.addEventListener("DOMContentLoaded", function () {
   let cartItems = JSON.parse(localStorage.getItem("carrito")) || [];
+
   const user = JSON.parse(localStorage.getItem("user")) || {};
   const token = localStorage.getItem("token") || "";
   const cartItemsContainer = document.getElementById("cart-items");
@@ -14,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const cartItem = document.createElement("div");
       cartItem.className = "cart-item";
       cartItem.innerHTML = `
-        <img src="${item.image}" alt="${item.name}" />
+        <img src="${API_URL}${item.image}" alt="${item.name}" />
         <span>${item.name}</span>
         <span>Precio: $${item.value * item.quantity}</span>
         <div class="quantity-controls">
@@ -75,6 +78,10 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   placeOrderButton.addEventListener("click", async function () {
+    if (!cartItems || cartItems.length === 0) {
+      alert("No se puede realizar una orden vacia!");
+      return;
+    }
     const orderData = {
       products: cartItems.map((item) => ({
         productId: item.id,
@@ -95,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (response.status === 201) {
         alert("Pedido realizado con exito.");
         localStorage.setItem("carrito", JSON.stringify([]));
-        window.location.href = "/";
+        window.location.href = "../orders/manage-user-orders.html";
       }
     } catch (error) {
       console.error("Error al realizar el pedido:", error);
