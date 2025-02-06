@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (response.status === 201) {
         alert("Pedido realizado con exito.");
         localStorage.setItem("carrito", JSON.stringify([]));
-        window.location.href = "/";
+        window.location.href = "../orders/manage-user-orders.html";
       }
     } catch (error) {
       console.error("Error al realizar el pedido:", error);
