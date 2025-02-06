@@ -14,10 +14,11 @@ app.use(
   cors({
     origin: "https://sweet-tooth-xtxl.onrender.com",
     methods: "GET,POST,PUT,DELETE,OPTIONS",
-    allowedHeaders: "Content-Type,Authorization",
+    allowedHeaders: "Content-Type,Authorization,x-auth-token",
     credentials: true,
   })
 );
+
 
 app.get("/products", (req, res) => {
   res.json([{ id: 1, name: "Producto de prueba" }]);
