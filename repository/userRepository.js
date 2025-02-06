@@ -35,7 +35,7 @@ const UserRepository = {
       data: {
         username: username,
         password: password,
-        role: "ADMIN",
+        role: "USER",
       },
     });
     return user;

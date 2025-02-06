@@ -294,6 +294,25 @@ h2 {
   display: block;
 }
 
+.increase-btn, .decrease-btn {
+  align-self: center;
+  align-items: center;
+  border-radius: 8px;
+  padding: 5px 9px 5px 9px;
+  margin: 10px;
+  background-color: #ea9dae;
+  border: 2px solid #f8de9c;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.decrease-btn {
+  padding: 5px 10px 5px 10px;
+}
+
+.increase-btn:hover, .decrease-btn:hover {
+  transition: 0.2s ease;
+  background-color: #f8de9c;
+}
 .cart-container {
   max-width: 800px;
   background-color: #f8f8ec;
@@ -307,6 +326,7 @@ h2 {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  font-family: Mermaid;
 }
 
 .cart-item {
@@ -314,9 +334,8 @@ h2 {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  border: 1px solid #ccc;
   border-radius: 8px;
-  background-color: #f8f8ec;
+  background-color: #ea9dae;
 }
 
 .cart-item img {
@@ -351,6 +370,12 @@ h2 {
   margin-top: 20px;
   margin-bottom: 30px;
   width: 100%;
+}
+
+#place-order:hover {
+  transition: 0.2s ease;
+  cursor: pointer;
+  background-color: #f8de9c;
 }
 
 .product-list {
@@ -411,12 +436,13 @@ h2 {
   background-color: #f8f8ec;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Mermaid;
 }
 
 .form-container input,
 .form-container textarea {
   width: 96%;
-  padding: 10px;
+  padding: 15px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -539,7 +565,7 @@ h2 {
   cursor: pointer;
 }
 
-#cart, #upload, #admin, #orders, #register, #login {
+#cart, #upload, #admin, #orders, #register, #login, #direc{
   text-align: center;
   margin-left: 0;
   justify-self: center;

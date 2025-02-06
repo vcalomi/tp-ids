@@ -33,4 +33,5 @@ export function addToCart(products, index) {
     });
   }
   localStorage.setItem("carrito", JSON.stringify(cart));
+  alert("Producto agregado!")
 }
