@@ -9,10 +9,22 @@ const app = express();
 const port = 3000;
 app.use(express.json());
 
-const corsOptions = {
-  origin: "https://tp-ids-2c0u.onrender.com",
-  optionsSuccessStatus: 200,
-};
+app.use(
+  cors({
+    origin: "https://sweet-tooth-xtxl.onrender.com",
+    methods: "GET,POST,PUT,DELETE,OPTIONS",
+    allowedHeaders: "Content-Type,Authorization",
+    credentials: true,
+  })
+);
+
+app.get("/products", (req, res) => {
+  res.json([{ id: 1, name: "Producto de prueba" }]);
+});
+
+app.listen(3000, () => {
+  console.log("Servidor corriendo en el puerto 3000");
+});
 
 app.use(cors(corsOptions));
 
