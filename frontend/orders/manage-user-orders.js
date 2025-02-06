@@ -1,3 +1,5 @@
+import { API_URL } from "../config.js";
+
 const token = localStorage.getItem("token");
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -5,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   async function fetchOrders() {
     try {
-      const response = await fetch("http://localhost:3000/orders/", {
+      const response = await fetch(`${API_URL}/orders/`, {
         headers: {
           "x-auth-token": token,
         },
@@ -60,15 +62,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   async function cancelOrder(orderId) {
-    const response = await fetch(
-      `http://localhost:3000/orders/cancel/${orderId}`,
-      {
-        method: "DELETE",
-        headers: {
-          "x-auth-token": token,
-        },
-      }
-    );
+    const response = await fetch(`${API_URL}/orders/cancel/${orderId}`, {
+      method: "DELETE",
+      headers: {
+        "x-auth-token": token,
+      },
+    });
     if (!response.ok) {
       alert("Ocurrio un error cancelando la orden");
       return;

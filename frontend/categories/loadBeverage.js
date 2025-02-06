@@ -1,3 +1,4 @@
+import { API_URL } from "../config.js";
 import { addToCart } from "../service/productService.js";
 
 function loadBeverage() {
@@ -11,8 +12,7 @@ function loadBeverage() {
     const beverageDiv = document.createElement("div");
     beverageDiv.className = "menu-dulces";
     const productImg = document.createElement("img");
-    productImg.src =
-      "../images/croissant.png";
+    productImg.src = `${API_URL}${beverageProducts[i].image}`;
     productImg.className = "food-image";
     const productDiv = document.createElement("div");
     productDiv.className = "producto";

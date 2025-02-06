@@ -1,7 +1,7 @@
-const baseURL = "http://localhost:3000/products/";
+import { API_URL } from "../config.js";
 
 async function fetchProducts() {
-  const response = await fetch(baseURL, {
+  const response = await fetch(`${API_URL}/products/`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

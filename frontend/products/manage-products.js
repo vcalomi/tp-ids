@@ -1,9 +1,11 @@
+import { API_URL } from "../config.js";
+
 document.addEventListener("DOMContentLoaded", function () {
   const token = localStorage.getItem("token");
   const productList = document.getElementById("product-list");
   async function fetchProducts() {
     try {
-      const response = await fetch("http://localhost:3000/products");
+      const response = await fetch(`${API_URL}/products`);
       const products = await response.json();
       displayProducts(products);
     } catch (error) {
@@ -15,10 +17,12 @@ document.addEventListener("DOMContentLoaded", function () {
     productList.innerHTML = "";
 
     products.forEach((product) => {
+      console.log("Product: ", product);
+
       const productItem = document.createElement("div");
       productItem.className = "product-item";
       productItem.innerHTML = `
-        <img src="${product.image}" alt="${
+        <img src="${API_URL}${product.image}" alt="${
         product.name
       }" class="product-image" />
         <div class="product-details">
@@ -44,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const productId = button.getAttribute("data-id");
         try {
           const response = await fetch(
-            `http://localhost:3000/products/delete/${productId}`,
+            `${API_URL}/products/delete/${productId}`,
             {
               method: "DELETE",
               headers: {

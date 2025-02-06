@@ -1,3 +1,4 @@
+import { API_URL } from "../config.js";
 import { addToCart } from "../service/productService.js";
 
 function loadSweet() {
@@ -11,8 +12,7 @@ function loadSweet() {
     const sweetDiv = document.createElement("div");
     sweetDiv.className = "menu-dulces";
     const productImg = document.createElement("img");
-    productImg.src =
-      "../images/croissant.png";
+    productImg.src = `${API_URL}${sweetProducts[i].image}`;
     productImg.className = "food-image";
     const productDiv = document.createElement("div");
     productDiv.className = "producto";

@@ -1,3 +1,5 @@
+import { API_URL } from "../config.js";
+
 let addressId = "";
 const token = localStorage.getItem("token");
 
@@ -8,7 +10,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     return;
   }
 
-  const response = await fetch("http://localhost:3000/address/get", {
+  const response = await fetch(`${API_URL}/address/get`, {
     headers: {
       "x-auth-token": token,
     },
@@ -38,7 +40,7 @@ document.getElementById("saveButton").addEventListener("click", function () {
     number: document.getElementById("number").value,
   };
 
-  fetch("http://localhost:3000/address/add", {
+  fetch(`${API_URL}/address/add`, {
     method: "POST",
     headers: {
       "x-auth-token": token,
@@ -65,7 +67,7 @@ document.getElementById("editButton").addEventListener("click", function () {
     number: document.getElementById("number").value,
   };
 
-  fetch("http://localhost:3000/address/update", {
+  fetch(`${API_URL}/address/update`, {
     method: "PUT",
     headers: {
       "x-auth-token": token,
@@ -83,7 +85,7 @@ document.getElementById("editButton").addEventListener("click", function () {
 });
 
 document.getElementById("deleteButton").addEventListener("click", function () {
-  fetch(`http://localhost:3000/address/delete/${addressId}`, {
+  fetch(`${API_URL}/address/delete/${addressId}`, {
     method: "DELETE",
     headers: {
       "x-auth-token": token,

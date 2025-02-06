@@ -1,3 +1,5 @@
+import { API_URL } from "../config.js";
+
 document.addEventListener("DOMContentLoaded", function () {
   const token = localStorage.getItem("token");
   const uploadForm = document.getElementById("upload-product-form");
@@ -5,27 +7,32 @@ document.addEventListener("DOMContentLoaded", function () {
   uploadForm.addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const productData = {
-      name: document.getElementById("product-name").value,
-      value: parseFloat(document.getElementById("product-value").value),
-      image: document.getElementById("product-image").value,
-      description: document.getElementById("product-description").value,
-      type: document
-        .getElementById("product-type")
-        .value.split(",")
-        .map((t) => t.trim()),
-      calories: parseInt(document.getElementById("product-calories").value),
-    };
+    const formData = new FormData();
+    formData.append("name", document.getElementById("product-name").value);
+    formData.append(
+      "value",
+      parseFloat(document.getElementById("product-value").value)
+    );
+    formData.append("image", document.getElementById("product-image").files[0]); // 📸 Capturar archivo
+    formData.append(
+      "description",
+      document.getElementById("product-description").value
+    );
+    formData.append("type", document.getElementById("product-type").value);
+    formData.append(
+      "calories",
+      parseInt(document.getElementById("product-calories").value)
+    );
 
     try {
-      const response = await fetch("http://localhost:3000/products/create", {
+      const response = await fetch(`${API_URL}/products/create`, {
         method: "POST",
         headers: {
           "x-auth-token": token,
-          "Content-Type": "application/json",
         },
-        body: JSON.stringify(productData),
+        body: formData,
       });
+
       if (response.status === 201) {
         alert("Producto subido con éxito.");
         window.location.href = "../index.html";

@@ -1,10 +1,12 @@
+import { API_URL } from "../config.js";
+
 document.addEventListener("DOMContentLoaded", function () {
   const token = localStorage.getItem("token");
   const ordersList = document.getElementById("orders-list");
 
   async function fetchOrders() {
     try {
-      const response = await fetch("http://localhost:3000/orders/all", {
+      const response = await fetch(`${API_URL}/orders/all`, {
         headers: {
           "x-auth-token": token,
         },
@@ -96,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const selectedStatus = select.value;
       try {
         const response = await fetch(
-          `http://localhost:3000/orders/changeStatus/${orderId}`,
+          `${API_URL}/orders/changeStatus/${orderId}`,
           {
             method: "PUT",
             headers: {
@@ -130,15 +132,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     try {
-      const response = await fetch(
-        `http://localhost:3000/orders/delete/${orderId}`,
-        {
-          method: "DELETE",
-          headers: {
-            "x-auth-token": token,
-          },
-        }
-      );
+      const response = await fetch(`${API_URL}/orders/delete/${orderId}`, {
+        method: "DELETE",
+        headers: {
+          "x-auth-token": token,
+        },
+      });
 
       if (!response.ok) {
         alert("No se ha podido eliminar la orden");

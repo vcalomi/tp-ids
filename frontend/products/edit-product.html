@@ -17,7 +17,7 @@
 
     <div class="form-container">
       <h1 class="title">Editar Producto</h1>
-      <form id="edit-product-form">
+      <form id="edit-product-form" enctype="multipart/form-data">
         <input
           type="text"
           id="edit-product-name"
@@ -30,12 +30,7 @@
           placeholder="Precio"
           required
         />
-        <input
-          type="text"
-          id="edit-product-image"
-          placeholder="URL de la Imagen"
-          required
-        />
+        <input type="file" id="edit-product-image" />
         <textarea
           id="edit-product-description"
           placeholder="Descripción del Producto"

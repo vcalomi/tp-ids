@@ -31,6 +31,7 @@ model Product {
   type         String[]
   calories     Int
   orderProduct OrderProduct[]
+  image String?
 }
 
 model Address {
