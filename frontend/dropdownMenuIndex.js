@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const optionList = document.createElement("ul");
   dropdownMenu.appendChild(optionList);
   const user = JSON.parse(localStorage.getItem("user"));
+  console.log(user);
+
   if (user && user.role === "ADMIN") {
     [
       { title: "Carrito", url: "./cart/cart.html" },
@@ -14,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
         url: "./products/manage-products.html",
       },
       { title: "Administrar Ordenes", url: "./orders/manage-orders.html" },
-      { title: "Cerrar sesion", url: "./authentication/logout.html" },
+      { title: "Cerrar Sesion", url: "./authentication/logout.html" },
     ].map(({ title, url }) => {
       const option = document.createElement("li");
       const link = document.createElement("a");

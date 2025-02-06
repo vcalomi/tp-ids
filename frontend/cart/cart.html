@@ -8,10 +8,12 @@
   </head>
   <body>
     <nav>
-      <i class="fa-solid fa-bars" id="hamburger-button"></i>
+      <i id="hamburger-button" class="fa-solid fa-bars"></i>
       <h1 id="title"><a href="../index.html">Sweet Tooth</a></h1>
       <button class="order-button"><a href="/">ORDENAR</a></button>
     </nav>
+
+    <div id="dropdown-menu" class="dropdown-menu"></div>
 
     <div class="cart-container">
       <h1 class="title">Carrito de Compras</h1>
@@ -55,10 +57,6 @@
           placeholder="Provincia"
           required
         />
-        <!-- <button id="delete-address" type="submit" class="order-button">
-          Eliminar Dirección
-        </button>
-        <button type="submit" class="order-button">Guardar Dirección</button> -->
       </form>
 
       <button id="place-order" class="order-button">Realizar Pedido</button>
@@ -97,5 +95,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="cart.js" type="module"></script>
+    <script src="./dropdownMenu.js"></script>
   </body>
 </html>
