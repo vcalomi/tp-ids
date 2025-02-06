@@ -1,80 +1,108 @@
-import { API_URL } from "../config.js";
-
 document.addEventListener("DOMContentLoaded", function () {
-  const token = localStorage.getItem("token");
-  const urlParams = new URLSearchParams(window.location.search);
-  const productId = urlParams.get("id");
+  let cartItems = JSON.parse(localStorage.getItem("carrito")) || [];
+  const user = JSON.parse(localStorage.getItem("user")) || {};
+  const token = localStorage.getItem("token") || "";
+  const cartItemsContainer = document.getElementById("cart-items");
+  const totalPriceElement = document.getElementById("total-price");
+  const placeOrderButton = document.getElementById("place-order");
 
-  const editForm = document.getElementById("edit-product-form");
+  function loadCartItems() {
+    cartItemsContainer.innerHTML = "";
+    let totalPrice = 0;
 
-  async function loadProduct() {
-    try {
-      const response = await fetch(`${API_URL}/products/${productId}`);
-      const product = await response.json();
+    cartItems.forEach((item, index) => {
+      const cartItem = document.createElement("div");
+      cartItem.className = "cart-item";
+      cartItem.innerHTML = `
+        <img src="${item.image}" alt="${item.name}" />
+        <span>${item.name}</span>
+        <span>Precio: $${item.value * item.quantity}</span>
+        <div class="quantity-controls">
+          <button class="decrease-btn" data-index="${index}">-</button>
+          <span>${item.quantity}</span>
+          <button class="increase-btn" data-index="${index}">+</button>
+        </div>
+      `;
 
-      document.getElementById("edit-product-name").value = product.name;
-      document.getElementById("edit-product-price").value = product.value;
-      document.getElementById("edit-product-image").value = product.image;
-      document.getElementById("edit-product-description").value =
-        product.description;
-      document.getElementById("edit-product-type").value =
-        product.type.join(", ");
-      document.getElementById("edit-product-calories").value = product.calories;
-    } catch (error) {
-      console.error("Error al cargar el producto:", error);
-    }
+      cartItemsContainer.appendChild(cartItem);
+      totalPrice += item.value * item.quantity;
+    });
+
+    totalPriceElement.textContent = totalPrice.toFixed(2);
+
+    document.querySelectorAll(".increase-btn").forEach((button) => {
+      button.addEventListener("click", function () {
+        updateQuantity(this.dataset.index, 1);
+      });
+    });
+
+    document.querySelectorAll(".decrease-btn").forEach((button) => {
+      button.addEventListener("click", function () {
+        updateQuantity(this.dataset.index, -1);
+      });
+    });
   }
 
-  editForm.addEventListener("submit", async function (e) {
-    e.preventDefault();
+  function updateQuantity(index, change) {
+    cartItems[index].quantity += change;
 
-    const formData = new FormData();
-
-    formData.append("name", document.getElementById("edit-product-name").value);
-    formData.append(
-      "value",
-      parseFloat(document.getElementById("edit-product-price").value)
-    );
-    formData.append(
-      "description",
-      document.getElementById("edit-product-description").value
-    );
-    formData.append(
-      "type",
-      document
-        .getElementById("edit-product-type")
-        .value.split(",")
-        .map((t) => t.trim())
-    );
-    formData.append(
-      "calories",
-      parseInt(document.getElementById("edit-product-calories").value)
-    );
-
-    const imageFile = document.getElementById("edit-product-image").files[0];
-    if (imageFile) {
-      formData.append("image", imageFile);
+    if (cartItems[index].quantity <= 0) {
+      cartItems.splice(index, 1);
     }
 
+    localStorage.setItem("carrito", JSON.stringify(cartItems));
+    loadCartItems();
+  }
+
+  async function loadSavedAddress() {
+    const response = await fetch("http://localhost:3000/address/get", {
+      headers: {
+        "x-auth-token": token,
+      },
+    });
+    if (response.status === 404) return;
+    const address = await response.json();
+    document.getElementById("street").value = address.street;
+    document.getElementById("city").value = address.city;
+    document.getElementById("number").value = address.number;
+    document.getElementById("zipCode").value = address.zipCode;
+    document.getElementById("province").value = address.province;
+    placeOrderButton.disabled = false;
+  }
+
+  async function loadUserInformation() {
+    document.getElementById("username").value = user.username;
+  }
+
+  placeOrderButton.addEventListener("click", async function () {
+    const orderData = {
+      products: cartItems.map((item) => ({
+        productId: item.id,
+        quantity: item.quantity,
+      })),
+    };
+
     try {
-      const response = await fetch(`${API_URL}/products/edit/${productId}`, {
-        method: "PUT",
+      const response = await fetch("http://localhost:3000/orders/create", {
+        method: "POST",
         headers: {
           "x-auth-token": token,
+          "Content-Type": "application/json",
         },
-        body: formData,
+        body: JSON.stringify(orderData),
       });
 
-      if (response.ok) {
-        alert("Producto actualizado con éxito.");
-        window.location.href = "./manage-products.html";
-      } else {
-        alert("Ha ocurrido un error al actualizar el producto.");
+      if (response.status === 201) {
+        alert("Pedido realizado con exito.");
+        localStorage.setItem("carrito", JSON.stringify([]));
+        window.location.href = "/";
       }
     } catch (error) {
-      console.error("Error al actualizar el producto:", error);
+      console.error("Error al realizar el pedido:", error);
     }
   });
 
-  loadProduct();
+  loadCartItems();
+  loadSavedAddress();
+  loadUserInformation();
 });

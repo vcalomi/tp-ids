@@ -1,16 +1,15 @@
 import { addToCart } from "../service/productService.js";
+import { API_URL } from "../config.js";
 
-function loadBeverage() {
+function loadAll() {
   const products = JSON.parse(localStorage.getItem("products"));
-  const title = document.getElementById("TITLE");
-
+  const allDivs = document.getElementById("productos");
   for (let i = 0; i < products.length; i++) {
-    const beverageDiv = document.createElement("div");
-    beverageDiv.className = "menu-dulces";
+    const allDiv = document.createElement("div");
+    allDiv.className = "menu-dulces";
     const productImg = document.createElement("img");
-    productImg.src = "../images/brownie.png";
+    productImg.src = `${API_URL}${products[i].image}`;
     productImg.className = "food-image";
-    productImg.id = "avocado-toast";
     const productDiv = document.createElement("div");
     productDiv.className = "producto";
     const productName = document.createElement("p");
@@ -18,23 +17,24 @@ function loadBeverage() {
     productName.innerText = products[i].name;
     const productDescription = document.createElement("p");
     productDescription.className = "descripcion";
-    productDescription.innerText = products[i].description;
+    productDescription.innerText = products[i].description + ". " + products[i].calories + " kcal";
     const productPrice = document.createElement("p");
     productPrice.className = "precio";
-    productPrice.innerText = products[i].value;
+    productPrice.innerText = "$" + products[i].value;
     productDiv.appendChild(productName);
     productDiv.appendChild(productDescription);
     productDiv.appendChild(productPrice);
     const addToCartButton = document.createElement("button");
     addToCartButton.innerText = "Agregar al carrito";
+    addToCartButton.className = "cart-button"
     addToCartButton.addEventListener("click", () =>
-      addToCart(beverageProducts, i)
+      addToCart(products, i)
     );
     productDiv.appendChild(addToCartButton);
-    title.append(beverageDiv);
-    beverageDiv.appendChild(productImg);
-    beverageDiv.appendChild(productDiv);
+    allDivs.append(allDiv);
+    allDiv.appendChild(productImg);
+    allDiv.appendChild(productDiv);
   }
 }
 
-loadBeverage();
+loadAll();
