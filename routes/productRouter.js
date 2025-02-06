@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const path = require("path");
+const fs = require("fs");
 const productService = require("../service/productService.js");
 const authMiddleware = require("../middleware/auth.js");
 
@@ -51,29 +52,55 @@ router.get("/:productId", async (req, res) => {
   }
 });
 
-router.put("/edit/:productId", authMiddleware, async (req, res) => {
-  try {
-    const user = req.user;
-    if (user.role !== "ADMIN") {
-      res.status(401).end();
+router.put(
+  "/edit/:productId",
+  authMiddleware,
+  upload.single("image"),
+  async (req, res) => {
+    try {
+      const user = req.user;
+      if (user.role !== "ADMIN") {
+        return res.status(401).end();
+      }
+
+      const productId = req.params.productId;
+      const productData = req.body;
+
+      if (req.file) {
+        productData.image = `/uploads/${req.file.filename}`;
+      }
+
+      await productService.editProduct(productId, productData);
+
+      res.status(204).end();
+    } catch (error) {
+      res.status(400).send({ message: error.message });
     }
-    await productService.editProduct(req.params.productId, req.body);
-    res.status(204).end();
-  } catch (error) {
-    res.status(400).send({ message: error.message });
   }
-});
+);
 
 router.delete("/delete/:productId", authMiddleware, async (req, res) => {
   try {
     const user = req.user;
     if (user.role !== "ADMIN") {
-      res.status(401).end();
+      return res.status(401).end();
     }
-    await productService.deleteProduct(req.params.productId);
+
+    const productId = req.params.productId;
+    const product = await productService.getProduct(productId);
+
+    if (product.image) {
+      const imagePath = path.join(__dirname, "..", "uploads", product.image);
+      if (fs.existsSync(imagePath)) {
+        fs.unlinkSync(imagePath);
+      }
+    }
+
+    await productService.deleteProduct(productId);
+
     res.status(204).end();
   } catch (error) {
-    res.status(400).send({ message: error.message }).end();
+    res.status(400).send({ message: error.message });
   }
 });
 
