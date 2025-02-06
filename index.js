@@ -5,6 +5,7 @@ const orderRouter = require("./routes/orderRouter.js");
 const authRouter = require("./routes/authRouter.js");
 const cors = require("cors");
 const path = require("path");
+const createAdmin = require("./createAdmin.js");
 const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(express.json());
@@ -35,6 +36,8 @@ app.use("/products", productRouter);
 app.use("/address", addressRouter);
 
 app.use("/orders", orderRouter);
+
+createAdmin();
 
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en http://localhost:${PORT}`);
