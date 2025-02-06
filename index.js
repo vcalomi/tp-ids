@@ -26,8 +26,6 @@ app.listen(3000, () => {
   console.log("Servidor corriendo en el puerto 3000");
 });
 
-app.use(cors(corsOptions));
-
 app.use("/uploads", express.static(path.join(__dirname, "public", "uploads")));
 
 app.use("/auth", authRouter);
