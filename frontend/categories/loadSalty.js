@@ -1,3 +1,4 @@
+import { API_URL } from "../config.js";
 import { addToCart } from "../service/productService.js";
 
 function loadSalty() {
@@ -11,7 +12,7 @@ function loadSalty() {
     const saltyDiv = document.createElement("div");
     saltyDiv.className = "menu-dulces";
     const productImg = document.createElement("img");
-    productImg.src = `http://localhost:3000${saltyProducts[i].image}`;
+    productImg.src = `${API_URL}${saltyProducts[i].image}`;
     productImg.className = "food-image";
     productImg.id = "avocado-toast";
     const productDiv = document.createElement("div");

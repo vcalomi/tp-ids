@@ -1,4 +1,5 @@
 import { getPayloadFromToken } from "./tokenDecoder.js";
+import { API_URL } from "../config.js";
 
 document
   .getElementById("registerForm")
@@ -8,7 +9,7 @@ document
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    fetch("http://localhost:3000/auth/register", {
+    fetch(`${API_URL}/auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

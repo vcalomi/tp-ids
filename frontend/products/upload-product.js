@@ -1,3 +1,5 @@
+import { API_URL } from "../config.js";
+
 document.addEventListener("DOMContentLoaded", function () {
   const token = localStorage.getItem("token");
   const uploadForm = document.getElementById("upload-product-form");
@@ -23,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     try {
-      const response = await fetch("http://localhost:3000/products/create", {
+      const response = await fetch(`${API_URL}/products/create`, {
         method: "POST",
         headers: {
           "x-auth-token": token,

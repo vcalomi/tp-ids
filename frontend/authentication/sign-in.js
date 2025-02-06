@@ -1,3 +1,4 @@
+import { API_URL } from "../config.js";
 import { getPayloadFromToken } from "./tokenDecoder.js";
 
 document
@@ -8,7 +9,7 @@ document
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    fetch("http://localhost:3000/auth/login", {
+    fetch(`${API_URL}/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
