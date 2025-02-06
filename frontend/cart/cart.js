@@ -1,5 +1,8 @@
+import { API_URL } from "../config.js";
+
 document.addEventListener("DOMContentLoaded", function () {
   let cartItems = JSON.parse(localStorage.getItem("carrito")) || [];
+
   const user = JSON.parse(localStorage.getItem("user")) || {};
   const token = localStorage.getItem("token") || "";
   const cartItemsContainer = document.getElementById("cart-items");
@@ -14,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const cartItem = document.createElement("div");
       cartItem.className = "cart-item";
       cartItem.innerHTML = `
-        <img src="${item.image}" alt="${item.name}" />
+        <img src="${API_URL}${item.image}" alt="${item.name}" />
         <span>${item.name}</span>
         <span>Precio: $${item.value * item.quantity}</span>
         <div class="quantity-controls">
