@@ -12,8 +12,6 @@ async function createAdmin() {
       role: "ADMIN",
     },
   });
-
-  console.log("Usuario admin creado:", admin);
 }
 
 module.exports = createAdmin;
