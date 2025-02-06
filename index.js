@@ -10,7 +10,7 @@ const port = 3000;
 app.use(express.json());
 
 const corsOptions = {
-  origin: "https://sweet-tooth-xtxl.onrender.com",
+  origin: "https://tp-ids-2c0u.onrender.com",
   optionsSuccessStatus: 200,
 };
 
