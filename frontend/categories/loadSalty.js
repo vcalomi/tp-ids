@@ -21,10 +21,10 @@ function loadSalty() {
     productName.innerText = saltyProducts[i].name;
     const productDescription = document.createElement("p");
     productDescription.className = "descripcion";
-    productDescription.innerText = saltyProducts[i].description + " Calorias: " + saltyProducts[i].calories
+    productDescription.innerText = saltyProducts[i].description + ". " + saltyProducts[i].calories + " kcal"
     const productPrice = document.createElement("p");
     productPrice.className = "precio";
-    productPrice.innerText = saltyProducts[i].value;
+    productPrice.innerText = "$" + saltyProducts[i].value;
     productDiv.appendChild(productName);
     productDiv.appendChild(productDescription);
     productDiv.appendChild(productPrice);

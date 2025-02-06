@@ -20,7 +20,6 @@
 
 body {
   margin: 0;
-  background-color: #f8f8ec;
 }
 
 :root {
@@ -112,7 +111,7 @@ nav {
 }
 
 #brownie-menu {
-  width: 200px;
+  width: 160px;
   height: 180px;
 }
 
@@ -144,42 +143,6 @@ nav {
 .card-list .card-item .category-button:hover {
   color: #ea9dae;
   transform: translateY(-5px);
-}
-
-.footer {
-  font-family: Cocogoose;
-  height: 80%;
-  background-color: white;
-  position: relative;
-  background: #ea9dae;
-  padding: 20px 50px;
-  flex-direction: column;
-}
-
-.social-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  margin: 10px;
-  flex-wrap: wrap;
-}
-
-.icon-elem {
-  list-style: none;
-}
-
-.icon {
-  color: white;
-  font-size: 32px;
-  display: inline-block;
-  margin: 0 10px;
-  transition: 0.5s;
-}
-
-.icon:hover {
-  transform: translateY(-10px);
-  color: #f8de9c;
 }
 
 .menu {
@@ -221,15 +184,15 @@ nav {
   font-family: Adelia;
   font-size: 50px;
   justify-self: flex-start;
-  margin: 3% 0 5% 13%;
+  margin: 40px 0 50px 190px;
 }
 
 .menu-dulces {
   display: flex;
   justify-self: center;
   justify-content: center;
-  margin: 5% 0 10% 0;
-  width: 50em;
+  margin-bottom: 50px;
+  width: 60em;
   border-radius: 50px;
   transition: 0.3s;
   padding: 20px;
@@ -249,13 +212,12 @@ nav {
   justify-self: flex-start;
 }
 
-
-
 .producto {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 30em;
 }
 
 .nombre {
@@ -269,7 +231,7 @@ nav {
 .precio {
   font-size: 20px;
   margin: 0;
-  padding: 5% 0 5% 0;
+  padding: 10px 0 20px 0;
 }
 
 .descripcion {
@@ -290,10 +252,12 @@ nav {
   text-shadow: 1px 1px black;
 }
 
-
+h2 {
+  margin: 20px 0 10px 0;
+}
 .dropdown-menu {
   display: none;
-  position: absolute;
+  position: fixed;
   top: 60px;
   left: 14em;
   background-color: #f8de9c;
@@ -330,16 +294,39 @@ nav {
   display: block;
 }
 
+.increase-btn, .decrease-btn {
+  align-self: center;
+  align-items: center;
+  border-radius: 8px;
+  padding: 5px 9px 5px 9px;
+  margin: 10px;
+  background-color: #ea9dae;
+  border: 2px solid #f8de9c;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.decrease-btn {
+  padding: 5px 10px 5px 10px;
+}
+
+.increase-btn:hover, .decrease-btn:hover {
+  transition: 0.2s ease;
+  background-color: #f8de9c;
+}
 .cart-container {
-  padding: 20px;
   max-width: 800px;
-  margin: 0 auto;
+  background-color: #f8f8ec;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  padding: 20px;
 }
 
 .cart-items {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  font-family: Mermaid;
 }
 
 .cart-item {
@@ -347,9 +334,8 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  border: 1px solid #ccc;
   border-radius: 8px;
-  background-color: #f8f8ec;
+  background-color: #ea9dae;
 }
 
 .cart-item img {
@@ -362,14 +348,15 @@ nav {
 .cart-summary {
   margin-top: 20px;
   text-align: right;
+  font-family: Mermaid;
 }
 
 .customer-form,
 .address-form {
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  font-family: Mermaid;
 }
 
 .customer-form input,
@@ -381,7 +368,14 @@ nav {
 
 #place-order {
   margin-top: 20px;
+  margin-bottom: 30px;
   width: 100%;
+}
+
+#place-order:hover {
+  transition: 0.2s ease;
+  cursor: pointer;
+  background-color: #f8de9c;
 }
 
 .product-list {
@@ -442,15 +436,17 @@ nav {
   background-color: #f8f8ec;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Mermaid;
 }
 
 .form-container input,
 .form-container textarea {
-  width: 100%;
-  padding: 10px;
+  width: 96%;
+  padding: 15px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 8px;
+  justify-self: center;
 }
 
 .form-container button {
@@ -567,4 +563,44 @@ nav {
   background-color: #f8de9c;
   box-shadow: 0.15em 0.15em black;
   cursor: pointer;
+}
+
+#cart, #upload, #admin, #orders, #register, #login, #direc{
+  text-align: center;
+  margin-left: 0;
+  justify-self: center;
+}
+
+.footer {
+  font-family: Cocogoose;
+  background-color: white;
+  background: #ea9dae;
+  padding: 20px 50px;
+  flex-direction: column;
+}
+
+.social-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 10px;
+  flex-wrap: wrap;
+}
+
+.icon-elem {
+  list-style: none;
+}
+
+.icon {
+  color: white;
+  font-size: 32px;
+  display: inline-block;
+  margin: 0 10px;
+  transition: 0.5s;
+}
+
+.icon:hover {
+  transform: translateY(-10px);
+  color: #f8de9c;
 }
