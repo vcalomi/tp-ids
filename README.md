@@ -37,6 +37,8 @@ En la seccion de "Subir producto" se necesita la informacion especificada del pr
 
 El carrito se mantiene igual. En "Administrar ordenes" se puede cambiar el estado del pedido realizado por el cliente para informarle como va su preparacion/envio. En "Administrar productos" se puede borrar y editar los productos que se desee.
 
+![administar-productos](frontend/images/product-admin.png)
+
 ## Como correr el proyecto
 
 Para correrlo local: 
