@@ -3,7 +3,7 @@ import { addToCart } from "../service/productService.js";
 
 function loadBeverage() {
   const products = JSON.parse(localStorage.getItem("products"));
-  const title = document.getElementById("TITLE");
+  const beverageDivs = document.getElementById("productos");
 
   const beverageProducts = products.filter((product) =>
     product.type.includes("BEBIDA")
@@ -14,7 +14,6 @@ function loadBeverage() {
     const productImg = document.createElement("img");
     productImg.src = `${API_URL}${beverageProducts[i].image}`;
     productImg.className = "food-image";
-    productImg.id = "avocado-toast";
     const productDiv = document.createElement("div");
     productDiv.className = "producto";
     const productName = document.createElement("p");
@@ -22,7 +21,7 @@ function loadBeverage() {
     productName.innerText = beverageProducts[i].name;
     const productDescription = document.createElement("p");
     productDescription.className = "descripcion";
-    productDescription.innerText = beverageProducts[i].description;
+    productDescription.innerText = beverageProducts[i].description + " Calorias: " + beverageProducts[i].calories
     const productPrice = document.createElement("p");
     productPrice.className = "precio";
     productPrice.innerText = beverageProducts[i].value;
@@ -30,12 +29,13 @@ function loadBeverage() {
     productDiv.appendChild(productDescription);
     productDiv.appendChild(productPrice);
     const addToCartButton = document.createElement("button");
+    addToCartButton.className = "cart-button"
     addToCartButton.innerText = "Agregar al carrito";
     addToCartButton.addEventListener("click", () =>
       addToCart(beverageProducts, i)
     );
     productDiv.appendChild(addToCartButton);
-    title.append(beverageDiv);
+    beverageDivs.append(beverageDiv);
     beverageDiv.appendChild(productImg);
     beverageDiv.appendChild(productDiv);
   }

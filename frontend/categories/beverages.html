@@ -8,12 +8,14 @@
   </head>
   <body>
     <nav>
-      <i class="fa-solid fa-bars"></i>
+      <i id="hamburger-button" class="fa-solid fa-bars"></i>
       <h1 id="title"><a href="../index.html">Sweet Tooth</a></h1>
       <button class="order-button"><a href="/">ORDENAR</a></button>
     </nav>
-    <p id="TITLE" class="title">Menu de Infusiones</p>
 
+    <div id="dropdown-menu" class="dropdown-menu"></div>
+    <p id="TITLE" class="title">Menu de Infusiones</p>
+    <div id="productos"></div>
     <footer class="footer">
       <ul class="social-icon">
         <li class="icon-elem">
@@ -46,5 +48,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="./loadBeverage.js" type="module"></script>
+    <script src="./dropdownMenu.js"></script>
   </body>
 </html>
