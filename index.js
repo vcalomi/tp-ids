@@ -8,7 +8,14 @@ const path = require("path");
 const app = express();
 const port = 3000;
 app.use(express.json());
-app.use(cors());
+
+const corsOptions = {
+  origin: "https://sweet-tooth-xtxl.onrender.com",
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
+
 app.use("/uploads", express.static(path.join(__dirname, "public", "uploads")));
 
 app.use("/auth", authRouter);
