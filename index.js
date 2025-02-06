@@ -29,6 +29,8 @@ app.use("/address", addressRouter);
 
 app.use("/orders", orderRouter);
 
+createAdmin();
+
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en http://localhost:${PORT}`);
 });
