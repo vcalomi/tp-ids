@@ -4,17 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../style.css" />
-    <title>Gestionar Órdenes - Sweet Tooth</title>
+    <title>Gestionar Ordenes - Sweet Tooth</title>
   </head>
   <body>
     <nav>
-      <i class="fa-solid fa-bars" id="hamburger-button"></i>
+      <i id="hamburger-button" class="fa-solid fa-bars"></i>
       <h1 id="title"><a href="../index.html">Sweet Tooth</a></h1>
       <button class="order-button"><a href="/">ORDENAR</a></button>
     </nav>
 
+    <div id="dropdown-menu" class="dropdown-menu"></div>
+
     <div class="form-container">
-      <h1 class="title">Gestionar Órdenes</h1>
+      <h1 class="title">Gestionar Ordenes</h1>
       <div id="orders-list" class="orders-list"></div>
     </div>
 
@@ -51,5 +53,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="manage-user-orders.js" type="module"></script>
+    <script src="./dropdownMenu.js"></script>
   </body>
 </html>
