@@ -3,6 +3,7 @@ import { API_URL } from "../config.js";
 
 function loadAll() {
   const products = JSON.parse(localStorage.getItem("products"));
+  console.log(products);
   const allDivs = document.getElementById("productos");
   for (let i = 0; i < products.length; i++) {
     const allDiv = document.createElement("div");
