@@ -3,6 +3,7 @@ const {
   S3Client,
   GetObjectCommand,
   PutObjectCommand,
+  DeleteObjectCommand,
 } = require("@aws-sdk/client-s3");
 const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
 
@@ -84,6 +85,13 @@ async function getProducts() {
 }
 
 async function deleteProduct(productId) {
+  const product = await getProduct(productId);
+  const params = {
+    Bucket: bucketName,
+    Key: product.image,
+  };
+  const command = new DeleteObjectCommand(params);
+  await s3Client.send(command);
   await ProductRepository.deleteProduct(productId);
 }
 
