@@ -1,4 +1,3 @@
-import { API_URL } from "../config.js";
 import { addToCart } from "../service/productService.js";
 
 function loadSweet() {
@@ -12,7 +11,7 @@ function loadSweet() {
     const sweetDiv = document.createElement("div");
     sweetDiv.className = "menu-dulces";
     const productImg = document.createElement("img");
-    productImg.src = `${API_URL}${sweetProducts[i].image}`;
+    productImg.src = `${sweetProducts[i].image}`;
     productImg.className = "food-image";
     const productDiv = document.createElement("div");
     productDiv.className = "producto";
@@ -21,7 +20,8 @@ function loadSweet() {
     productName.innerText = sweetProducts[i].name;
     const productDescription = document.createElement("p");
     productDescription.className = "descripcion";
-    productDescription.innerText = sweetProducts[i].description + ". " + sweetProducts[i].calories + " kcal"
+    productDescription.innerText =
+      sweetProducts[i].description + ". " + sweetProducts[i].calories + " kcal";
     const productPrice = document.createElement("p");
     productPrice.className = "precio";
     productPrice.innerText = "$" + sweetProducts[i].value;
@@ -29,7 +29,7 @@ function loadSweet() {
     productDiv.appendChild(productDescription);
     productDiv.appendChild(productPrice);
     const addToCartButton = document.createElement("button");
-    addToCartButton.className = "cart-button"
+    addToCartButton.className = "cart-button";
     addToCartButton.innerText = "Agregar al carrito";
     addToCartButton.addEventListener("click", () =>
       addToCart(sweetProducts, i)

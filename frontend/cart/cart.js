@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const cartItem = document.createElement("div");
       cartItem.className = "cart-item";
       cartItem.innerHTML = `
-        <img src="${API_URL}${item.image}" alt="${item.name}" />
+        <img src="${item.image}" alt="${item.name}" />
         <span>${item.name}</span>
         <span>Precio: $${item.value * item.quantity}</span>
         <div class="quantity-controls">
