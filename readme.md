@@ -37,6 +37,8 @@ En la seccion de "Subir producto" se necesita la informacion especificada del pr
 
 El carrito se mantiene igual. En "Administrar ordenes" se puede cambiar el estado del pedido realizado por el cliente para informarle como va su preparacion/envio. En "Administrar productos" se puede borrar y editar los productos que se desee.
 
+![administar-productos](frontend/images/docum/product-admin.png)
+
 ## Como correr el proyecto
 
 Para correrlo local: 
@@ -51,10 +53,10 @@ Nota: Se debe configurar en un archivo .env la url a la base de datos de esta fo
 
 Para correrlo con docker:
 
-1. En la primer ejecucion ejecutar `docker-compose exec backend npx prisma migrate dev --name init`
-2. En ejecuciones posteriores solo se debe ingresar el comando: `docker-compose up --build`
+1. En la primer ejecucion ejecutar `docker-compose up --build` 
+2. Una vez iniciado el servicio ejecutar: `docker-compose exec backend npx prisma migrate dev --name init` 
 3. Ingresar en el navegador a `http://localhost:3000`
 
 Nota: Se debe configurar en el archivo `config.js` del frontend la url del backend (En este caso: `http://localhost:3000`)
 
-Para verlo en produccion puede ingresar a: `https://sweet-tooth-xtxl.onrender.com/`
+Para verlo en produccion puede ingresar a: [https://sweet-tooth-xtxl.onrender.com/](https://sweet-tooth-xtxl.onrender.com/)
