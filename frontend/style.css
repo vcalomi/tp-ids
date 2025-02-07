@@ -74,6 +74,11 @@ nav {
   padding: 0.8em;
   background-color: #ea9dae;
   box-shadow: 0.15em 0.15em black;
+  transition: 0.2s ease;
+}
+
+.order-button:hover {
+  background-color: #d87a8e;
 }
 
 .fa-bars {
@@ -339,7 +344,7 @@ h2 {
 }
 
 .cart-item img {
-  width: 50px;
+  width: max-content;
   height: 50px;
   object-fit: cover;
   border-radius: 8px;
@@ -370,12 +375,13 @@ h2 {
   margin-top: 20px;
   margin-bottom: 30px;
   width: 100%;
+  background-color: #ea9dae;
+  transition: 0.2s ease;
 }
 
 #place-order:hover {
-  transition: 0.2s ease;
   cursor: pointer;
-  background-color: #f8de9c;
+  background-color: #d87a8e;
 }
 
 .product-list {
@@ -388,13 +394,12 @@ h2 {
   display: flex;
   align-items: center;
   padding: 15px;
-  border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #f8f8ec;
 }
 
 .product-image {
-  width: 100px;
+  width: max-content;
   height: 100px;
   object-fit: cover;
   border-radius: 8px;
@@ -403,6 +408,7 @@ h2 {
 
 .product-details {
   flex: 1;
+  font-weight: 2;
 }
 
 .product-details h3 {
@@ -436,17 +442,27 @@ h2 {
   background-color: #f8f8ec;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  font-family: Mermaid;
 }
 
 .form-container input,
-.form-container textarea {
+.form-container textarea,
+.form-container select {
   width: 96%;
   padding: 15px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 8px;
   justify-self: center;
+  color: gray;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.form-container select {
+  width: 101%;
+}
+
+.form-container input[type="file"] {
+  background-color: white;
 }
 
 .form-container button {
@@ -468,12 +484,12 @@ h2 {
 }
 
 .edit-button {
-  background-color: #4caf50;
+  background-color: #f8de9c;
   color: white;
 }
 
 .edit-button:hover {
-  background-color: #45a049;
+  background-color: #d4b973;
 }
 
 .delete-button {
@@ -493,7 +509,6 @@ h2 {
 
 .order-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 15px;
   border: 1px solid #ccc;
@@ -503,12 +518,14 @@ h2 {
 
 .order-details {
   flex: 1;
+  margin-right: 20px;
 }
 
 .order-details h3 {
   margin: 0;
   font-size: 1.5em;
-  color: #45151b;
+  color: #d4b973;
+  text-shadow: 1px 1px black;
 }
 
 .order-details p {
@@ -522,11 +539,21 @@ h2 {
 
 .order-actions {
   display: flex;
+  justify-content: space-around;
   gap: 10px;
+  padding-left: 20px;
+}
+
+label {
+  font-family: Mermaid;
 }
 
 .edit-button,
-.delete-button {
+.delete-button,
+.save-button {
+  font-family: Cocogoose;
+  color: black;
+  box-shadow: 0.15em 0.15em black;
   padding: 10px 20px;
   border: none;
   border-radius: 8px;
@@ -534,18 +561,18 @@ h2 {
   transition: background-color 0.3s;
 }
 
-.edit-button {
-  background-color: #4caf50;
-  color: white;
+.save-button {
+  background-color: #ea9dae;
 }
 
-.edit-button:hover {
-  background-color: #45a049;
+.save-button:hover {
+  background-color: #d87a8e;
 }
 
 .delete-button {
   background-color: #ea9dae;
-  color: white;
+  font-size: 13px;
+  margin-right: 30px;
 }
 
 .delete-button:hover {
@@ -563,6 +590,10 @@ h2 {
   background-color: #f8de9c;
   box-shadow: 0.15em 0.15em black;
   cursor: pointer;
+}
+
+.cart-button:hover {
+  background-color: #d4b973;
 }
 
 #cart, #upload, #admin, #orders, #register, #login, #direc{

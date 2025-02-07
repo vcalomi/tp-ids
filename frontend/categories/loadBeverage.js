@@ -30,7 +30,7 @@ function loadBeverage() {
     productDiv.appendChild(productPrice);
     const addToCartButton = document.createElement("button");
     addToCartButton.className = "cart-button"
-    addToCartButton.innerText = "Agregar al carrito";
+    addToCartButton.innerText = "AGREGAR AL CARRITO";
     addToCartButton.addEventListener("click", () =>
       addToCart(beverageProducts, i)
     );

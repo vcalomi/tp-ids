@@ -25,7 +25,7 @@ function loadAll() {
     productDiv.appendChild(productDescription);
     productDiv.appendChild(productPrice);
     const addToCartButton = document.createElement("button");
-    addToCartButton.innerText = "Agregar al carrito";
+    addToCartButton.innerText = "AGREGAR AL CARRITO";
     addToCartButton.className = "cart-button"
     addToCartButton.addEventListener("click", () =>
       addToCart(products, i)

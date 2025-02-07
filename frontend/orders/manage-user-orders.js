@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <div class="order-actions">
           <button class="delete-button" data-id="${
             order.id
-          }">Cancelar Orden</button>
+          }">CANCELAR ORDEN</button>
         </div>
       `;
       ordersList.appendChild(orderItem);
