@@ -44,9 +44,16 @@ function validateProductData(data) {
   }
 }
 
-async function createProduct(request) {
-  validateProductData(request.body);
+async function deleteImageFromAWS(product) {
+  const params = {
+    Bucket: bucketName,
+    Key: product.image,
+  };
+  const command = new DeleteObjectCommand(params);
+  await s3Client.send(command);
+}
 
+async function createImageInAWS(request) {
   const params = {
     Bucket: bucketName,
     Key: request.file.originalname,
@@ -57,6 +64,12 @@ async function createProduct(request) {
   const command = new PutObjectCommand(params);
 
   await s3Client.send(command);
+}
+
+async function createProduct(request) {
+  validateProductData(request.body);
+
+  createImageInAWS(request);
 
   const imageName = request.file.originalname;
   const productData = { ...request.body, imageName };
@@ -86,37 +99,22 @@ async function getProducts() {
 
 async function deleteProduct(productId) {
   const product = await getProduct(productId);
-  const params = {
-    Bucket: bucketName,
-    Key: product.image,
-  };
-  const command = new DeleteObjectCommand(params);
-  await s3Client.send(command);
+  deleteImageFromAWS(product);
   await ProductRepository.deleteProduct(productId);
 }
 
 async function editProduct(request) {
   validateProductData(request.body);
   const product = await getProduct(request.params.productId);
-  const deleteOldImageParams = {
-    Bucket: bucketName,
-    Key: product.image,
-  };
-  const deleteOldImageCommand = new DeleteObjectCommand(deleteOldImageParams);
-  await s3Client.send(deleteOldImageCommand);
-  const params = {
-    Bucket: bucketName,
-    Key: request.file.originalname,
-    Body: request.file.buffer,
-    ContentType: request.file.mimetype,
-  };
-
-  const command = new PutObjectCommand(params);
-
-  await s3Client.send(command);
-  const imageName = request.file.originalname;
-  const productData = { ...request.body, imageName };
-  await ProductRepository.editProduct(request.params.productId, productData);
+  if (request.file) {
+    deleteImageFromAWS(product);
+    createImageInAWS(request);
+    const imageName = request.file.originalname;
+    const productData = { ...request.body, imageName };
+    await ProductRepository.editProduct(request.params.productId, productData);
+  } else {
+    await ProductRepository.editProduct(request.params.productId, request.body);
+  }
 }
 
 module.exports = {
