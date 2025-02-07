@@ -1,4 +1,3 @@
-import { API_URL } from "../config.js";
 import { addToCart } from "../service/productService.js";
 
 function loadSalty() {
@@ -8,11 +7,12 @@ function loadSalty() {
   const saltyProducts = products.filter((product) =>
     product.type.includes("SALADO")
   );
+
   for (let i = 0; i < saltyProducts.length; i++) {
     const saltyDiv = document.createElement("div");
     saltyDiv.className = "menu-dulces";
     const productImg = document.createElement("img");
-    productImg.src = `${API_URL}${saltyProducts[i].image}`;
+    productImg.src = `${saltyProducts[i].image}`;
     productImg.className = "food-image";
     const productDiv = document.createElement("div");
     productDiv.className = "producto";
@@ -21,7 +21,8 @@ function loadSalty() {
     productName.innerText = saltyProducts[i].name;
     const productDescription = document.createElement("p");
     productDescription.className = "descripcion";
-    productDescription.innerText = saltyProducts[i].description + ". " + saltyProducts[i].calories + " kcal"
+    productDescription.innerText =
+      saltyProducts[i].description + ". " + saltyProducts[i].calories + " kcal";
     const productPrice = document.createElement("p");
     productPrice.className = "precio";
     productPrice.innerText = "$" + saltyProducts[i].value;

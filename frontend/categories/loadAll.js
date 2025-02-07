@@ -1,5 +1,4 @@
 import { addToCart } from "../service/productService.js";
-import { API_URL } from "../config.js";
 
 function loadAll() {
   const products = JSON.parse(localStorage.getItem("products"));
@@ -8,7 +7,7 @@ function loadAll() {
     const allDiv = document.createElement("div");
     allDiv.className = "menu-dulces";
     const productImg = document.createElement("img");
-    productImg.src = `${API_URL}${products[i].image}`;
+    productImg.src = `${products[i].image}`;
     productImg.className = "food-image";
     const productDiv = document.createElement("div");
     productDiv.className = "producto";
@@ -17,7 +16,8 @@ function loadAll() {
     productName.innerText = products[i].name;
     const productDescription = document.createElement("p");
     productDescription.className = "descripcion";
-    productDescription.innerText = products[i].description + ". " + products[i].calories + " kcal";
+    productDescription.innerText =
+      products[i].description + ". " + products[i].calories + " kcal";
     const productPrice = document.createElement("p");
     productPrice.className = "precio";
     productPrice.innerText = "$" + products[i].value;

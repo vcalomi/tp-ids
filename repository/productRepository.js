@@ -12,7 +12,7 @@ const ProductRepository = {
           ? productData.type
           : [productData.type],
         calories: parseInt(productData.calories),
-        image: productData.imageUrl,
+        image: productData.imageName,
       },
     });
     return product;
@@ -49,7 +49,7 @@ const ProductRepository = {
           ? productData.type
           : [productData.type],
         calories: parseInt(productData.calories),
-        image: productData.image,
+        image: productData.imageName,
       },
     });
   },

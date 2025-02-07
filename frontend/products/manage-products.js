@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const productItem = document.createElement("div");
       productItem.className = "product-item";
       productItem.innerHTML = `
-        <img src="${API_URL}${product.image}" alt="${
+        <img src="${product.image}" alt="${
         product.name
       }" class="product-image" />
         <div class="product-details">
