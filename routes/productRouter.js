@@ -6,6 +6,7 @@ const fs = require("fs");
 const productService = require("../service/productService.js");
 const authMiddleware = require("../middleware/auth.js");
 const s3 = require("@aws-sdk/client-s3");
+const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
 
 const storage = multer.memoryStorage();
 
@@ -46,8 +47,8 @@ router.post(
 
       await s3Client.send(command);
 
-      const imageUrl = req.file.originalname;
-      const productData = { ...req.body, imageUrl };
+      const imageName = req.file.originalname;
+      const productData = { ...req.body, imageName };
       const product = await productService.createProduct(productData);
       const location = `/products/${product.id}`;
       res.location(location).status(201).send(product);
@@ -59,6 +60,18 @@ router.post(
 
 router.get("/", async (req, res) => {
   const products = await productService.getProducts();
+
+  for (const product of products) {
+    const getObjectParams = {
+      Bucket: bucketName,
+      Key: product.image,
+    };
+
+    const command = new s3.GetObjectCommand(getObjectParams);
+    const url = await getSignedUrl(s3Client, command);
+    product.image = url;
+  }
+
   res.status(200).send(products);
 });
 
