@@ -5,25 +5,8 @@ const path = require("path");
 const fs = require("fs");
 const productService = require("../service/productService.js");
 const authMiddleware = require("../middleware/auth.js");
-const s3 = require("@aws-sdk/client-s3");
-const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
-
 const storage = multer.memoryStorage();
-
 const upload = multer({ storage });
-
-const bucketName = process.env.BUCKET_NAME;
-const bucketRegion = process.env.BUCKET_REGION;
-const accessKey = process.env.ACCESS_KEY;
-const secretAccessKey = process.env.SECRET_ACCESS_KEY;
-
-const s3Client = new s3.S3Client({
-  credentials: {
-    accessKeyId: accessKey,
-    secretAccessKey: secretAccessKey,
-  },
-  region: bucketRegion,
-});
 
 router.post(
   "/create",
@@ -36,20 +19,7 @@ router.post(
         res.status(401).end();
       }
 
-      const params = {
-        Bucket: bucketName,
-        Key: req.file.originalname,
-        Body: req.file.buffer,
-        ContentType: req.file.mimetype,
-      };
-
-      const command = new s3.PutObjectCommand(params);
-
-      await s3Client.send(command);
-
-      const imageName = req.file.originalname;
-      const productData = { ...req.body, imageName };
-      const product = await productService.createProduct(productData);
+      const product = await productService.createProduct(req);
       const location = `/products/${product.id}`;
       res.location(location).status(201).send(product);
     } catch (error) {
@@ -60,17 +30,6 @@ router.post(
 
 router.get("/", async (req, res) => {
   const products = await productService.getProducts();
-
-  for (const product of products) {
-    const getObjectParams = {
-      Bucket: bucketName,
-      Key: product.image,
-    };
-
-    const command = new s3.GetObjectCommand(getObjectParams);
-    const url = await getSignedUrl(s3Client, command);
-    product.image = url;
-  }
 
   res.status(200).send(products);
 });
