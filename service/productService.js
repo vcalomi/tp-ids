@@ -95,9 +95,28 @@ async function deleteProduct(productId) {
   await ProductRepository.deleteProduct(productId);
 }
 
-async function editProduct(productId, productData) {
-  validateProductData(productData);
-  await ProductRepository.editProduct(productId, productData);
+async function editProduct(request) {
+  validateProductData(request.body);
+  const product = await getProduct(request.params.productId);
+  const deleteOldImageParams = {
+    Bucket: bucketName,
+    Key: product.image,
+  };
+  const deleteOldImageCommand = new DeleteObjectCommand(deleteOldImageParams);
+  await s3Client.send(deleteOldImageCommand);
+  const params = {
+    Bucket: bucketName,
+    Key: request.file.originalname,
+    Body: request.file.buffer,
+    ContentType: request.file.mimetype,
+  };
+
+  const command = new PutObjectCommand(params);
+
+  await s3Client.send(command);
+  const imageName = request.file.originalname;
+  const productData = { ...request.body, imageName };
+  await ProductRepository.editProduct(request.params.productId, productData);
 }
 
 module.exports = {

@@ -54,14 +54,7 @@ router.put(
         return res.status(401).end();
       }
 
-      const productId = req.params.productId;
-      const productData = req.body;
-
-      if (req.file) {
-        productData.image = `/uploads/${req.file.filename}`;
-      }
-
-      await productService.editProduct(productId, productData);
+      await productService.editProduct(req);
 
       res.status(204).end();
     } catch (error) {
