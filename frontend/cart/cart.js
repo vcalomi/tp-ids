@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   async function loadSavedAddress() {
-    const response = await fetch("http://localhost:3000/address/get", {
+    const response = await fetch(`${API_URL}/address/get`, {
       headers: {
         "x-auth-token": token,
       },
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     try {
-      const response = await fetch("http://localhost:3000/orders/create", {
+      const response = await fetch(`${API_URL}/orders/create`, {
         method: "POST",
         headers: {
           "x-auth-token": token,
