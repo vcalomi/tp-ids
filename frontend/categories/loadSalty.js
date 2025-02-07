@@ -30,8 +30,8 @@ function loadSalty() {
     productDiv.appendChild(productDescription);
     productDiv.appendChild(productPrice);
     const addToCartButton = document.createElement("button");
-    addToCartButton.className = "cart-button";
-    addToCartButton.innerText = "Agregar al carrito";
+    addToCartButton.className = "cart-button"
+    addToCartButton.innerText = "AGREGAR AL CARRITO";
     addToCartButton.addEventListener("click", () =>
       addToCart(saltyProducts, i)
     );

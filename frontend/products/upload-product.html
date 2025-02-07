@@ -34,19 +34,19 @@
           placeholder="Descripción del Producto"
           required
         ></textarea>
-        <input
-          type="text"
-          id="product-type"
-          placeholder="Tipo (separado por comas, ej: dulce, vegano)"
-          required
-        />
+        <select id="product-type" required>
+          <option value="" disabled selected>Selecciona un tipo</option>
+          <option value="DULCE">DULCE</option>
+          <option value="SALADO">SALADO</option>
+          <option value="BEBIDA">BEBIDA</option>
+        </select>
         <input
           type="number"
           id="product-calories"
           placeholder="Calorías"
           required
         />
-        <button type="submit" class="order-button">Subir Producto</button>
+        <button type="submit" class="order-button">SUBIR PRODUCTO</button>
       </form>
     </div>
 

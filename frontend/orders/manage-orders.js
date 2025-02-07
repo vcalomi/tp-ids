@@ -47,13 +47,13 @@ document.addEventListener("DOMContentLoaded", function () {
               .join("")}
           </ul>
           <p><strong>Total:</strong> $${order.totalPrice}</p>
-          <p>Estado: ${order.orderStatus}</p>
+          <p><strong>Estado:</strong> ${order.orderStatus}</p>
         </div>
         <div class="order-actions">
           <button class="edit-button" data-id="${
             order.id
-          }">Cambiar estado de orden</button>
-          <button class="delete-button" data-id="${order.id}">Eliminar</button>
+          }">CAMBIAR ESTADO</button>
+          <button class="delete-button" data-id="${order.id}">ELIMINAR</button>
         </div>
       `;
       ordersList.appendChild(orderItem);

@@ -25,9 +25,11 @@ function loadAll() {
     productDiv.appendChild(productDescription);
     productDiv.appendChild(productPrice);
     const addToCartButton = document.createElement("button");
-    addToCartButton.innerText = "Agregar al carrito";
-    addToCartButton.className = "cart-button";
-    addToCartButton.addEventListener("click", () => addToCart(products, i));
+    addToCartButton.innerText = "AGREGAR AL CARRITO";
+    addToCartButton.className = "cart-button"
+    addToCartButton.addEventListener("click", () =>
+      addToCart(products, i)
+    );
     productDiv.appendChild(addToCartButton);
     allDivs.append(allDiv);
     allDiv.appendChild(productImg);
