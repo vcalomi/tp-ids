@@ -5,16 +5,7 @@ const path = require("path");
 const fs = require("fs");
 const productService = require("../service/productService.js");
 const authMiddleware = require("../middleware/auth.js");
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "public/uploads");
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
-});
-
+const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 router.post(
@@ -27,9 +18,8 @@ router.post(
       if (user.role !== "ADMIN") {
         res.status(401).end();
       }
-      const imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
-      const productData = { ...req.body, imageUrl };
-      const product = await productService.createProduct(productData);
+
+      const product = await productService.createProduct(req);
       const location = `/products/${product.id}`;
       res.location(location).status(201).send(product);
     } catch (error) {
@@ -40,6 +30,7 @@ router.post(
 
 router.get("/", async (req, res) => {
   const products = await productService.getProducts();
+
   res.status(200).send(products);
 });
 
@@ -63,14 +54,7 @@ router.put(
         return res.status(401).end();
       }
 
-      const productId = req.params.productId;
-      const productData = req.body;
-
-      if (req.file) {
-        productData.image = `/uploads/${req.file.filename}`;
-      }
-
-      await productService.editProduct(productId, productData);
+      await productService.editProduct(req);
 
       res.status(204).end();
     } catch (error) {
