@@ -21,10 +21,10 @@ function loadBeverage() {
     productName.innerText = beverageProducts[i].name;
     const productDescription = document.createElement("p");
     productDescription.className = "descripcion";
-    productDescription.innerText = beverageProducts[i].description + " Calorias: " + beverageProducts[i].calories
+    productDescription.innerText = beverageProducts[i].description + ". " + beverageProducts[i].calories + " kcal"
     const productPrice = document.createElement("p");
     productPrice.className = "precio";
-    productPrice.innerText = beverageProducts[i].value;
+    productPrice.innerText = "$" + beverageProducts[i].value;
     productDiv.appendChild(productName);
     productDiv.appendChild(productDescription);
     productDiv.appendChild(productPrice);

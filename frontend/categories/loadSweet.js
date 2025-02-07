@@ -21,10 +21,10 @@ function loadSweet() {
     productName.innerText = sweetProducts[i].name;
     const productDescription = document.createElement("p");
     productDescription.className = "descripcion";
-    productDescription.innerText = sweetProducts[i].description + " Calorias: " + sweetProducts[i].calories
+    productDescription.innerText = sweetProducts[i].description + ". " + sweetProducts[i].calories + " kcal"
     const productPrice = document.createElement("p");
     productPrice.className = "precio";
-    productPrice.innerText = sweetProducts[i].value;
+    productPrice.innerText = "$" + sweetProducts[i].value;
     productDiv.appendChild(productName);
     productDiv.appendChild(productDescription);
     productDiv.appendChild(productPrice);

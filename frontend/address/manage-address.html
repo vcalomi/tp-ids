@@ -5,17 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Formulario de Dirección</title>
     <link rel="stylesheet" href="../style.css" />
+    <link rel="icon" type="image/x-icon" href="../images/favicon.png">
   </head>
   <body>
     <nav>
       <i id="hamburger-button" class="fa-solid fa-bars"></i>
       <h1 id="title"><a href="../index.html">Sweet Tooth</a></h1>
-      <button class="order-button"><a href="/">ORDENAR</a></button>
+      <button class="order-button">
+        <a href="../categories/all.html">ORDENAR</a>
+      </button>
     </nav>
 
     <div id="dropdown-menu" class="dropdown-menu"></div>
-    <h2>Formulario de Dirección</h2>
     <form id="addressForm" class="form-container">
+      <h2 class="title" id="direc">Formulario de Direccion</h2>
       <label for="street">Calle:</label>
       <input type="text" id="street" name="street" />
 
@@ -90,7 +93,7 @@
       src="https://kit.fontawesome.com/3f6a94cf86.js"
       crossorigin="anonymous"
     ></script>
-    <script src="./manage-address.js"></script>
+    <script src="./manage-address.js" type="module"></script>
     <script src="./dropdownMenu.js"></script>
   </body>
 </html>

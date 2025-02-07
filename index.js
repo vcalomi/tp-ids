@@ -8,7 +8,16 @@ const path = require("path");
 const app = express();
 const port = 3000;
 app.use(express.json());
-app.use(cors());
+
+app.use(
+  cors({
+    origin: process.env.REQUESTS_ORIGIN,
+    methods: "GET,POST,PUT,DELETE,OPTIONS",
+    allowedHeaders: "Content-Type,Authorization,x-auth-header",
+    credentials: true,
+  })
+);
+
 app.use("/uploads", express.static(path.join(__dirname, "public", "uploads")));
 
 app.use("/auth", authRouter);

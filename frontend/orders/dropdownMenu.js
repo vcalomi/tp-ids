@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const optionList = document.createElement("ul");
   dropdownMenu.appendChild(optionList);
   const user = JSON.parse(localStorage.getItem("user"));
-  console.log(user);
 
   if (user && user.role === "ADMIN") {
     [

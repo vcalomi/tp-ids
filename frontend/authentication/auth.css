@@ -2,7 +2,7 @@
   max-width: 400px;
   margin: 50px auto;
   padding: 20px;
-  background-color: #fff;
+  background-color: #f8f8ec;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -11,11 +11,10 @@
   font-family: "Adelia", sans-serif;
   font-size: 2em;
   text-align: center;
-  color: #45151b;
 }
 
 .form-container input {
-  width: 100%;
+  width: 95%;
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ccc;

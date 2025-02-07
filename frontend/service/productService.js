@@ -28,7 +28,9 @@ export function addToCart(products, index) {
       name: products[index].name,
       value: products[index].value,
       quantity: 1,
+      image: products[index].image,
     });
   }
   localStorage.setItem("carrito", JSON.stringify(cart));
+  alert("Producto agregado!")
 }
