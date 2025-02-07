@@ -5,17 +5,24 @@ const path = require("path");
 const fs = require("fs");
 const productService = require("../service/productService.js");
 const authMiddleware = require("../middleware/auth.js");
+const s3 = require("@aws-sdk/client-s3");
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "public/uploads");
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
-});
+const storage = multer.memoryStorage();
 
 const upload = multer({ storage });
+
+const bucketName = process.env.BUCKET_NAME;
+const bucketRegion = process.env.BUCKET_REGION;
+const accessKey = process.env.ACCESS_KEY;
+const secretAccessKey = process.env.SECRET_ACCESS_KEY;
+
+const s3Client = new s3.S3Client({
+  credentials: {
+    accessKeyId: accessKey,
+    secretAccessKey: secretAccessKey,
+  },
+  region: bucketRegion,
+});
 
 router.post(
   "/create",
@@ -27,7 +34,19 @@ router.post(
       if (user.role !== "ADMIN") {
         res.status(401).end();
       }
-      const imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
+
+      const params = {
+        Bucket: bucketName,
+        Key: req.file.originalname,
+        Body: req.file.buffer,
+        ContentType: req.file.mimetype,
+      };
+
+      const command = new s3.PutObjectCommand(params);
+
+      await s3Client.send(command);
+
+      const imageUrl = req.file.originalname;
       const productData = { ...req.body, imageUrl };
       const product = await productService.createProduct(productData);
       const location = `/products/${product.id}`;
