@@ -388,7 +388,7 @@ h2 {
 .product-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 20px
 }
 
 .product-item {
@@ -400,11 +400,11 @@ h2 {
 }
 
 .product-image {
-  width: max-content;
+  max-width: 100px;
   height: 100px;
   object-fit: cover;
   border-radius: 8px;
-  margin-right: 20px;
+  margin-right: 40px;
 }
 
 .product-details {
@@ -473,6 +473,7 @@ h2 {
 .product-actions {
   display: flex;
   gap: 10px;
+  padding-left: 30px;
 }
 
 .edit-button,
