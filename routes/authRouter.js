@@ -86,4 +86,22 @@ router.get("/users", authMiddleware, async (req, res) => {
   }
 });
 
+router.put("/users/role/:userId", authMiddleware, async (req, res) => {
+  try {
+    const user = req.user;
+    if (user.role !== "ADMIN") {
+      res.status(401).end();
+    }
+
+    const userId = req.params.userId;
+    const newRole = req.body.role;
+
+    await authService.changeRole(userId, newRole);
+    res.status(204).send("Rol cambiado correctamente");
+  } catch (error) {
+    console.error(error);
+    res.status(400).end();
+  }
+});
+
 module.exports = router;
