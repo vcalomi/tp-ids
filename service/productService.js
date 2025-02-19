@@ -21,7 +21,7 @@ const s3Client = new S3Client({
 });
 
 function validateProductData(data) {
-  const { name, description, value, type, calories } = data;
+  const { name, description, value, type, calories, status } = data;
 
   if (!name || name.trim().length === 0) {
     throw new Error("Product name is required and cannot be empty");
@@ -41,6 +41,10 @@ function validateProductData(data) {
 
   if (calories == null || calories < 0) {
     throw new Error("Product calories must be a positive number");
+  }
+
+  if (!status || status.trim().length === 0) {
+    throw new Error("Product status is required and cannot be empty");
   }
 }
 

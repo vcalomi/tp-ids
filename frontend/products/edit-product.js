@@ -14,12 +14,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
       document.getElementById("edit-product-name").value = product.name;
       document.getElementById("edit-product-price").value = product.value;
-      // document.getElementById("edit-product-image").value = product.image; // Esto es solo para mostrar la imagen actual
       document.getElementById("edit-product-description").value =
         product.description;
-      document.getElementById("edit-product-type").value =
-        product.type.join(", ");
+      document.getElementById("product-type").value = product.type[0];
       document.getElementById("edit-product-calories").value = product.calories;
+      document.getElementById("product-status").value = product.status;
     } catch (error) {
       console.error("Error al cargar el producto:", error);
     }
@@ -39,17 +38,12 @@ document.addEventListener("DOMContentLoaded", function () {
       "description",
       document.getElementById("edit-product-description").value
     );
-    formData.append(
-      "type",
-      document
-        .getElementById("edit-product-type")
-        .value.split(",")
-        .map((t) => t.trim())
-    );
+    formData.append("type", document.getElementById("product-type").value);
     formData.append(
       "calories",
       parseInt(document.getElementById("edit-product-calories").value)
     );
+    formData.append("status", document.getElementById("product-status").value);
 
     const imageFile = document.getElementById("edit-product-image").files[0];
     if (imageFile) {
