@@ -598,7 +598,7 @@ label {
   background-color: #d4b973;
 }
 
-#cart, #upload, #admin, #orders, #register, #login, #direc {
+#cart, #upload, #admin, #orders, #register, #login, #direc, #edit {
   text-align: center;
   margin-left: 0;
   justify-self: center;
