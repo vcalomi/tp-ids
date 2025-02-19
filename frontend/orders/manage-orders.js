@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
         },
       });
       const orders = await response.json();
-      console.log(orders);
 
       if (!orders || orders.length === 0) {
         return;
