@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../style.css" />
     <title>Editar Producto - Sweet Tooth</title>
-    <link rel="icon" type="image/x-icon" href="../images/favicon.png">
+    <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
   </head>
   <body>
     <nav>
@@ -39,19 +39,26 @@
           placeholder="Descripción del Producto"
           required
         ></textarea>
-        <input
-          type="text"
-          id="edit-product-type"
-          placeholder="Tipo (separado por comas, ej: dulce, vegano)"
-          required
-        />
+        <select id="product-type" required>
+          <option value="" disabled selected>Selecciona un tipo</option>
+          <option value="DULCE">DULCE</option>
+          <option value="SALADO">SALADO</option>
+          <option value="BEBIDA">BEBIDA</option>
+        </select>
         <input
           type="number"
           id="edit-product-calories"
           placeholder="Calorías"
           required
         />
-        <button type="submit" class="order-button">Guardar Cambios</button>
+        <select id="product-status" required>
+          <option value="" disabled selected>
+            Activa o desactiva el producto
+          </option>
+          <option value="ACTIVE">ACTIVO</option>
+          <option value="INACTIVE">INACTIVO</option>
+        </select>
+        <button type="submit" class="order-button">GUARDAR CAMBIOS</button>
       </form>
     </div>
 

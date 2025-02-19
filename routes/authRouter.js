@@ -3,6 +3,7 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const authService = require("../service/authService.js");
+const authMiddleware = require("../middleware/auth.js");
 
 router.post("/register", async (req, res) => {
   const { username, password } = req.body;
@@ -68,6 +69,38 @@ router.post("/login", async (req, res) => {
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Server error");
+  }
+});
+
+router.get("/users", authMiddleware, async (req, res) => {
+  try {
+    const user = req.user;
+    if (user.role !== "ADMIN") {
+      res.status(401).end();
+    }
+    const users = await authService.getUsers();
+    res.status(200).send(users).end();
+  } catch (error) {
+    console.error(error);
+    res.status(400).end();
+  }
+});
+
+router.put("/users/role/:userId", authMiddleware, async (req, res) => {
+  try {
+    const user = req.user;
+    if (user.role !== "ADMIN") {
+      res.status(401).end();
+    }
+
+    const userId = req.params.userId;
+    const newRole = req.body.role;
+
+    await authService.changeRole(userId, newRole);
+    res.status(204).send("Rol cambiado correctamente");
+  } catch (error) {
+    console.error(error);
+    res.status(400).end();
   }
 });
 

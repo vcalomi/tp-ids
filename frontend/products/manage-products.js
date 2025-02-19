@@ -22,21 +22,21 @@ document.addEventListener("DOMContentLoaded", function () {
       const productItem = document.createElement("div");
       productItem.className = "product-item";
       productItem.innerHTML = `
-        <img src="${API_URL}${product.image}" alt="${
+        <img src="${product.image}" alt="${
         product.name
       }" class="product-image" />
         <div class="product-details">
           <h3>${product.name}</h3>
           <p>${product.description}</p>
-          <p>Precio: $${product.value}</p>
-          <p>Tipo: ${product.type.join(", ")}</p>
-          <p>Calorías: ${product.calories}</p>
+          <p><strong>Precio:</strong> $${product.value}</p>
+          <p><strong>Tipo:</strong> ${product.type.join(", ")}</p>
+          <p><strong>Calorías:</strong> ${product.calories}</p>
         </div>
         <div class="product-actions">
-          <button class="edit-button" data-id="${product.id}">Editar</button>
+          <button class="edit-button" data-id="${product.id}">EDITAR</button>
           <button class="delete-button" data-id="${
             product.id
-          }">Eliminar</button>
+          }">ELIMINAR</button>
         </div>
       `;
       productList.appendChild(productItem);

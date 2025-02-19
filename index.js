@@ -5,10 +5,20 @@ const orderRouter = require("./routes/orderRouter.js");
 const authRouter = require("./routes/authRouter.js");
 const cors = require("cors");
 const path = require("path");
+const { createAdmin } = require("./createAdmin.js");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 app.use(express.json());
-app.use(cors());
+
+app.use(
+  cors({
+    origin: process.env.REQUESTS_ORIGIN,
+    methods: "GET,POST,PUT,DELETE,OPTIONS",
+    allowedHeaders: "Content-Type,Authorization,x-auth-token",
+    credentials: true,
+  })
+);
+
 app.use("/uploads", express.static(path.join(__dirname, "public", "uploads")));
 
 app.use("/auth", authRouter);
@@ -18,6 +28,8 @@ app.use("/products", productRouter);
 app.use("/address", addressRouter);
 
 app.use("/orders", orderRouter);
+
+createAdmin();
 
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);

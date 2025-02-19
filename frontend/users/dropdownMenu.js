@@ -15,8 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
         url: "../products/manage-products.html",
       },
       { title: "Administrar Ordenes", url: "../orders/manage-orders.html" },
-      { title: "Administrar Usuarios", url: "../users/manage-users.html" },
-      { title: "Cerrar Sesion", url: "./logout.html" },
+      { title: "Administrar Usuarios", url: "./manage-users.html" },
+      { title: "Cerrar Sesion", url: "../authentication/logout.html" },
     ].map(({ title, url }) => {
       const option = document.createElement("li");
       const link = document.createElement("a");
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
         title: "Administrar Ordenes",
         url: "../orders/manage-user-orders.html",
       },
-      { title: "Cerrar sesion", url: "./logout.html" },
+      { title: "Cerrar sesion", url: "../authentication/logout.html" },
     ].map(({ title, url }) => {
       const option = document.createElement("li");
       const link = document.createElement("a");
@@ -46,8 +46,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   } else {
     [
-      { title: "Registrarse", url: "./sign-up.html" },
-      { title: "Iniciar sesion", url: "./sign-in.html" },
+      { title: "Registrarse", url: "../authentication/sign-up.html" },
+      { title: "Iniciar sesion", url: "../authentication/sign-in.html" },
     ].map(({ title, url }) => {
       const option = document.createElement("li");
       const link = document.createElement("a");

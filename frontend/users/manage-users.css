@@ -1,0 +1,38 @@
+.user-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 800px;
+  margin: 0 auto 20px auto;
+}
+
+.user-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #ea9dae;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-item p {
+  margin: 0;
+  font-size: 1.2em;
+  color: #45151b;
+}
+
+.user-item button {
+  font-family: "Cocogoose";
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #f8de9c;
+  box-shadow: 0.15em 0.15em black;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.user-item button:hover {
+  background-color: #d4b973;
+}
