@@ -5,7 +5,7 @@ async function createAdmin() {
   try {
     await prisma.appUser.create({
       data: {
-        username: "admin",
+        username: "vcalomino",
         password: "1234",
         role: "ADMIN",
       },
