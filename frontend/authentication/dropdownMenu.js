@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
         url: "../products/manage-products.html",
       },
       { title: "Administrar Ordenes", url: "../orders/manage-orders.html" },
+      { title: "Administrar Usuarios", url: "../users/manage-users.html" },
       { title: "Cerrar Sesion", url: "./logout.html" },
     ].map(({ title, url }) => {
       const option = document.createElement("li");

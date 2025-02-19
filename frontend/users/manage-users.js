@@ -29,7 +29,6 @@ async function toggleAdmin(users, userId) {
     if (user.role === "ADMIN") {
       newRole = "USER";
     }
-    console.log(newRole);
 
     const response = await fetch(`${API_URL}/auth/users/role/${user.id}`, {
       method: "PUT",
@@ -64,6 +63,5 @@ document.addEventListener("DOMContentLoaded", async function () {
     return;
   }
   const users = await response.json();
-  console.log(users);
   renderUsers(users);
 });
