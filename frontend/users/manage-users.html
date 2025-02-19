@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administrar Usuarios - Sweet Tooth</title>
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="./manage-users.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav>
+      <i id="hamburger-button" class="fa-solid fa-bars"></i>
+      <h1 id="title"><a href="../index.html">Sweet Tooth</a></h1>
+      <button class="order-button">
+        <a href="../categories/all.html">ORDENAR</a>
+      </button>
+    </nav>
+
+    <div id="dropdown-menu" class="dropdown-menu"></div>
+
+    <div class="container">
+      <h2 class="title">Lista de Usuarios</h2>
+      <div class="user-list"></div>
+    </div>
+
+    <footer class="footer">
+      <div class="social-icon">
+        <div class="icon-elem">
+          <a href="#" class="icon"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+        <div class="icon-elem">
+          <a href="#" class="icon"><i class="fa-brands fa-facebook"></i></a>
+        </div>
+        <div class="icon-elem">
+          <a href="#" class="icon"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="./manage-users.js"></script>
+    <script type="module" src="./dropdownMenu.js"></script>
+  </body>
+</html>
