@@ -215,6 +215,7 @@ nav {
   margin: 10px;
   display: flex;
   justify-self: flex-start;
+  align-self: center;
 }
 
 .producto {
@@ -596,7 +597,7 @@ label {
   background-color: #d4b973;
 }
 
-#cart, #upload, #admin, #orders, #register, #login, #direc{
+#cart, #upload, #admin, #orders, #register, #login, #direc {
   text-align: center;
   margin-left: 0;
   justify-self: center;
