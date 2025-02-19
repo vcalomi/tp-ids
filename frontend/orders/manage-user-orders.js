@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
               .join("")}
           </ul>
           <p><strong>Total:</strong> $${order.totalPrice}</p>
+          <p>${order.orderStatus}</p>
         </div>
         <div class="order-actions">
           <button class="delete-button" data-id="${

@@ -17,8 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
     productList.innerHTML = "";
 
     products.forEach((product) => {
-      console.log("Product: ", product);
-
       const productItem = document.createElement("div");
       productItem.className = "product-item";
       productItem.innerHTML = `
