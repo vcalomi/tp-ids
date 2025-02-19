@@ -71,14 +71,16 @@ async function createImageInAWS(request) {
 }
 
 async function createProduct(request) {
-  validateProductData(request.body);
+  const productData = { ...request.body, status: "ACTIVE" };
+
+  validateProductData(productData);
 
   createImageInAWS(request);
 
   const imageName = request.file.originalname;
-  const productData = { ...request.body, imageName };
+  const product = { ...request.body, imageName };
 
-  return ProductRepository.createProduct(productData);
+  return ProductRepository.createProduct(product);
 }
 
 async function getProduct(id) {
