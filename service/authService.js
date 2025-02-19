@@ -12,8 +12,13 @@ async function createUser(username, password) {
   return await userRepository.createUser(username, password);
 }
 
+async function getUsers() {
+  return await userRepository.getUsers();
+}
+
 module.exports = {
   findUser,
   findUserById,
   createUser,
+  getUsers,
 };
