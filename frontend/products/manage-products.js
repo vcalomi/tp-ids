@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <p><strong>Precio:</strong> $${product.value}</p>
           <p><strong>Tipo:</strong> ${product.type.join(", ")}</p>
           <p><strong>Calorías:</strong> ${product.calories}</p>
+          <p><strong>Estado:</strong>${product.status}</p>
         </div>
         <div class="product-actions">
           <button class="edit-button" data-id="${product.id}">EDITAR</button>
