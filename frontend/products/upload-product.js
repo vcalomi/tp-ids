@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
       "value",
       parseFloat(document.getElementById("product-value").value)
     );
-    formData.append("image", document.getElementById("product-image").files[0]); // 📸 Capturar archivo
+    formData.append("image", document.getElementById("product-image").files[0]);
     formData.append(
       "description",
       document.getElementById("product-description").value

@@ -21,7 +21,7 @@ const s3Client = new S3Client({
 });
 
 function validateProductData(data) {
-  const { name, description, value, type, calories } = data;
+  const { name, description, value, type, calories, status } = data;
 
   if (!name || name.trim().length === 0) {
     throw new Error("Product name is required and cannot be empty");
@@ -41,6 +41,10 @@ function validateProductData(data) {
 
   if (calories == null || calories < 0) {
     throw new Error("Product calories must be a positive number");
+  }
+
+  if (!status || status.trim().length === 0) {
+    throw new Error("Product status is required and cannot be empty");
   }
 }
 
@@ -67,14 +71,16 @@ async function createImageInAWS(request) {
 }
 
 async function createProduct(request) {
-  validateProductData(request.body);
+  const productData = { ...request.body, status: "ACTIVE" };
+
+  validateProductData(productData);
 
   createImageInAWS(request);
 
   const imageName = request.file.originalname;
-  const productData = { ...request.body, imageName };
+  const product = { ...request.body, imageName };
 
-  return ProductRepository.createProduct(productData);
+  return ProductRepository.createProduct(product);
 }
 
 async function getProduct(id) {
