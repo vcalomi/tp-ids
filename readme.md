@@ -41,21 +41,54 @@ El carrito se mantiene igual. En "Administrar ordenes" se puede cambiar el estad
 
 ## Como correr el proyecto
 
-Para correrlo local: 
+Para correrlo local:
 
-1. Ejecutar el backend.
+1. Crear archivo .env con las variables necesarias:
+
+```txt
+DATABASE_URL="postgresql://{database_user}:{database_password}@{database_host}:{database_port}/{database_name}?schema=public"
+REQUESTS_ORIGIN={url base del frontend}
+# Credenciales de aws
+BUCKET_NAME=
+BUCKET_REGION=
+ACCESS_KEY=
+SECRET_ACCESS_KEY=
+```
+
+2. Configurar la url del backend en frontend/config.js
+
+3. Ejecutar el backend
+
 ```shell
 npm start
 ```
-2. Luego abrir el archivo index.html
+
+3. Luego abrir el archivo index.html
 
 Nota: Se debe configurar en un archivo .env la url a la base de datos de esta forma `DATABASE_URL={url base de datos}` y se debe configurar en el archivo `config.js` del frontend la url del backend (En este caso: `http://localhost:3000`)
 
 Para correrlo con docker:
 
-1. En la primer ejecucion ejecutar `docker-compose up --build` 
-2. Una vez iniciado el servicio ejecutar: `docker-compose exec backend npx prisma migrate dev --name init` 
-3. Ingresar en el navegador a `http://localhost:3000`
+1. Crear archivo .env con las variables necesarias:
+
+```txt
+DATABASE_URL="postgresql://{database_user}:{database_password}@{database_host}:{database_port}/{database_name}?schema=public"
+REQUESTS_ORIGIN={url base del frontend}
+# Credenciales de aws
+BUCKET_NAME=
+BUCKET_REGION=
+ACCESS_KEY=
+SECRET_ACCESS_KEY=
+POSTGRES_USER={database_user}
+POSTGRES_PASSWORD={database_password}
+POSTGRES_DB={database_name}
+```
+
+2. Configurar la url del backend en frontend/config.js
+
+3. En la primer ejecucion ejecutar `docker-compose up --build`
+4. Una vez iniciado el servicio ejecutar: `docker-compose exec backend npx prisma migrate dev --name init`
+5. Ingresar en el navegador a `http://localhost:3000`
 
 Nota: Se debe configurar en el archivo `config.js` del frontend la url del backend (En este caso: `http://localhost:3000`)
 
