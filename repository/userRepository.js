@@ -40,6 +40,20 @@ const UserRepository = {
     });
     return user;
   },
+  async getUsers() {
+    const users = await prisma.appUser.findMany();
+    return users;
+  },
+  async changeRole(userId, newRole) {
+    await prisma.appUser.update({
+      where: {
+        id: parseInt(userId),
+      },
+      data: {
+        role: newRole,
+      },
+    });
+  },
 };
 
 module.exports = UserRepository;
