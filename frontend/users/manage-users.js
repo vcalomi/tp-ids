@@ -21,12 +21,32 @@ function renderUsers(users) {
   });
 }
 
-function toggleAdmin(users, userId) {
+async function toggleAdmin(users, userId) {
+  const token = localStorage.getItem("token");
   const user = users.find((u) => u.id === userId);
   if (user) {
-    console.log("CLICK");
+    let newRole = "ADMIN";
+    if (user.role === "ADMIN") {
+      newRole = "USER";
+    }
+    console.log(newRole);
 
-    renderUsers();
+    const response = await fetch(`${API_URL}/auth/users/role/${user.id}`, {
+      method: "PUT",
+      headers: {
+        "x-auth-token": token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ role: newRole }),
+    });
+
+    if (!response.ok) {
+      alert("Hubo un error al actualizar el rol");
+      return;
+    }
+
+    alert("Actualizado correctamente");
+    window.location.href = "./manage-users.html";
   }
 }
 
